@@ -1,0 +1,15 @@
+/* Regular */
+
+@font-face {
+    font-family: "roboto-mono";
+    src: url(./type/regular.ttf) format("truetype");
+}
+
+/* Italic */
+
+@font-face {
+    font-family: "roboto-mono";
+    font-style: italic;
+
+    src: url(./type/italic.ttf) format("truetype");
+}

@@ -1,0 +1,43 @@
+.kenno-grid {
+  overflow: hidden;
+  font-size: small;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: max-content;
+  box-shadow: 0px 2px 0px black;
+}
+
+.kenno-grid table {
+  border-collapse: collapse;
+}
+
+.kenno-grid td {
+  padding: 0;
+  border-bottom: solid 1px black;
+  border-right: solid 1px black;
+}
+
+.kenno-grid .heading {
+  font-family: "roboto-mono";
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  background-color: #f0f0f0;
+  color: #1e1e1e;
+}
+
+.kenno-grid thead td {
+  border-right: solid 1px black;
+  border-bottom: solid 1px black;
+}
+
+.kenno-grid td:last-child {
+  border-bottom: solid 1px black;
+  border-right: none;
+}
+
+.kenno-grid tbody tr:last-child td {
+  border-bottom: none;
+}
