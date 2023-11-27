@@ -16,7 +16,7 @@ export default function Grid({ data }: Props) {
       <table>
         <thead>
           <tr>
-            <td className="heading"></td>
+            <td className="heading">{":"}</td>
             {range(first(data.rows).columns.length).map(i => (
               <td key={i} className="heading">
                 {i}
