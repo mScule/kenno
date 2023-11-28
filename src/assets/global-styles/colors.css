@@ -1,0 +1,14 @@
+:root {
+  --color-red: #cb5a6f;
+  --color-green: #6aa88d;
+  --color-blue: #648ef4;
+  --color-yellow: #eac754;
+
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  --color-gray-darker: #222222;
+  --color-gray-dark: #444444;
+  --color-gray: #888888;
+  --color-gray-bright: #dadada;
+}

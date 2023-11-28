@@ -1,0 +1,9 @@
+:root {
+    font-family: var(--font-main);
+    color: var(--color-font);
+    border-color: var(--border-color);
+}
+
+html {
+    background-color: var(--color-background);
+}

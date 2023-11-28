@@ -21,6 +21,7 @@
 `$($(0:0):3)` References fourth column of row that's index is the value found at the column 0 at row 0
 `$user` Reference the cell that has "user" as alias
 `$user(0:4)` Reference the cell that is four columns away from the cell that has "user" as alias
+`$($mike, $age)` Reference a column that has the age of "mike"
 
 #### Returns array of values
 `$(0->3:5)` References sixth column in rows 0 to 3 (Returns array)

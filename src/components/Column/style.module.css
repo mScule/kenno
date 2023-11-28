@@ -1,0 +1,78 @@
+.column {
+  max-width: 15rem;
+  font-family: "roboto-mono";
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  font-size: smaller;
+  gap: 0.5rem;
+}
+.column > div {
+  color: var(--color-font-secondary);
+}
+.column > span {
+  padding: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  border-radius: 4px;
+}
+
+.typeIcon {
+  font-size: small;
+  display: flex;
+  align-self: center;
+}
+
+.tagRed {
+  background-color: var(--color-red);
+}
+.tagGreen {
+  background-color: var(--color-green);
+}
+.tagBlue {
+  background-color: #3f8efc;
+}
+.tagYellow {
+  background-color: var(--color-yellow);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tagRed, .tagGreen, .tagBlue, .tagYellow {
+    background-color: transparent;
+    font-weight: bold;
+  }
+
+  .tagRed svg {
+    color: var(--color-red);
+  }
+  .tagRed span {
+    color: var(--color-black);
+    background: var(--color-red);
+  }
+  
+  .tagGreen svg {
+    color: var(--color-green);
+  }
+  .tagGreen span {
+    color: var(--color-black);
+    background: var(--color-green);
+  }
+  
+  .tagBlue svg {
+    color: var(--color-blue);
+  }
+  .tagBlue span {
+    color: var(--color-black);
+    background: var(--color-blue)
+  }
+  
+  .tagYellow svg {
+    color: var(--color-yellow);
+  }
+  .tagYellow span {
+    color: var(--color-black);
+    background: var(--color-yellow);
+  }
+}

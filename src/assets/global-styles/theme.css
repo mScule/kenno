@@ -1,0 +1,23 @@
+:root {
+  --color-background: var(--color-white);
+  --color-border: var(--color-black);
+
+  --color-fill: var(--color-white);
+  --color-fill-secondary: var(--color-gray-bright);
+
+  --color-font: var(--color-black);
+  --color-font-secondary: var(--color-black);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-gray-darker);
+    --color-border: var(--color-gray);
+
+    --color-fill: var(--color-gray);
+    --color-fill-secondary: var(--color-gray-dark);
+
+    --color-font: var(--color-white);
+    --color-font-secondary: var(--color-gray-bright);
+  }
+}

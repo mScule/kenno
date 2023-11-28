@@ -1,5 +1,6 @@
-import isAbsent from "../../utility/isAbsent";
+import style from "./style.module.css";
 
+import isAbsent from "../../utility/isAbsent";
 import clsx from "clsx";
 
 import {
@@ -14,8 +15,6 @@ import Tag from "../../types/Tag";
 
 import DataType from "../../types/DataType";
 
-import "./style.css";
-
 type Props = {
   data: Column;
 };
@@ -23,13 +22,13 @@ type Props = {
 function getTagColor(tag?: Tag) {
   switch (tag) {
     case Tag.Red:
-      return "tag-red";
+      return style.tagRed;
     case Tag.Yellow:
-      return "tag-yellow";
+      return style.tagYellow;
     case Tag.Green:
-      return "tag-green";
+      return style.tagGreen;
     case Tag.Blue:
-      return "tag-blue";
+      return style.tagBlue;
     default:
       return null;
   }
@@ -51,8 +50,8 @@ function getTypeIcon(type: DataType) {
 export default function Column({ data: { type, content, tag } }: Props) {
   return (
     <td className={clsx(getTagColor(tag))}>
-      <div className="kenno-column">
-        <div className="kenno-type-icon">
+      <div className={style.column}>
+        <div className={style.typeIcon}>
           {!isAbsent(type) && getTypeIcon(type!)}
         </div>
         <span>{content && content}</span>
