@@ -48,10 +48,11 @@ function getTypeIcon(type: DataType) {
 }
 
 export default function Column({
-  data: { type, content, tag, selected }
+  data: { type, content, tag, selected, reference }
 }: Props) {
   return (
     <td className={clsx(getTagColor(tag), style.tableData)}>
+      {reference && <div className={style.reference}>${reference}</div>}
       <div className={clsx(style.column, selected && style.selected)}>
         <div className={clsx(selected && style.selectedBorder)} />
         <div className={style.typeIcon}>

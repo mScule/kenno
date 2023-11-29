@@ -1,3 +1,7 @@
+.tableData {
+  position: relative;
+}
+
 .column {
   position: relative;
   max-width: 15rem;
@@ -9,7 +13,7 @@
   align-items: center;
   font-size: smaller;
   gap: 0.5rem;
-  z-index:3;
+  z-index: 3;
 }
 
 .selectable {
@@ -20,7 +24,7 @@
 .selectedBorder {
   position: absolute;
 
-  margin: 2px;  
+  margin: 2px;
 
   top: 0;
   left: 0;
@@ -43,10 +47,6 @@
   border-radius: 4px;
 }
 
-.content {
-  z-index: 3;
-}
-
 .typeIcon {
   font-size: small;
   display: flex;
@@ -60,10 +60,45 @@
   background-color: var(--color-green);
 }
 .tagBlue {
-  background-color: #3f8efc;
+  background-color: var(--color-blue);
 }
 .tagYellow {
   background-color: var(--color-yellow);
+}
+
+.reference {
+  position: absolute;
+  background-color: var(--color-fill-secondary);
+  max-width: calc(100% - 0.75rem);
+
+  overflow: scroll;
+
+  border: solid 1px var(--color-border);
+  border-top: 0;
+  border-right: 0;
+
+  top: 0;
+  right: 0;
+
+  height: fit-content;
+  width: fit-content;
+
+  padding: 0.25rem;
+
+  z-index: 4;
+
+  font-weight: bold;
+  font-size: smaller;
+
+  border-bottom-left-radius: 8px;
+}
+
+.reference::-webkit-scrollbar {
+  display: none;
+}
+.reference {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @media (prefers-color-scheme: dark) {

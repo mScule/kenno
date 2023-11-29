@@ -19,7 +19,7 @@ export default function App() {
             {
               columns: [
                 { content: "Hello there", type: DataType.String },
-                { content: "False", type: DataType.Boolean },
+                { content: "False", type: DataType.Boolean, reference: "very_long_ref_name_la_lalalala" },
                 { content: "20", type: DataType.Number },
                 { content: "10", type: DataType.Expression }
               ]
@@ -49,7 +49,8 @@ export default function App() {
                   content:
                     "Mike is mike foo bar baz ipsum dolor ruudim beerum.",
                   type: DataType.Expression,
-                  selected: true
+                  selected: true,
+                  reference: "Beer"
                 }
               ]
             },
@@ -61,7 +62,8 @@ export default function App() {
                   content:
                     "Mike is mike foo bar baz ipsum dolor ruudim beerum.",
                   type: DataType.Expression,
-                  tag: Tag.Red
+                  tag: Tag.Red,
+                  reference: "very_long_ref_name"
                 },
                 {
                   content:
@@ -97,7 +99,7 @@ export default function App() {
               columns: [
                 { content: "20", type: DataType.Number, tag: Tag.Green },
                 { content: "20", type: DataType.Number },
-                { content: "20", type: DataType.Number },
+                { content: "20", type: DataType.Number, reference: "Mike" },
                 { content: "20", type: DataType.Number, tag: Tag.Yellow }
               ]
             }
