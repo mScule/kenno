@@ -14,22 +14,24 @@ export default function App() {
       </Card>
 
       <Grid
-        data={{
-          rows: [
-            {
-              columns: [
-                { type: Type.Number, value: "10", reference: "num1" },
-                { type: Type.Number, value: "25", reference: "num2" },
-                {
-                  type: Type.Expression,
-                  value: "35",
-                  reference: "sum",
-                  color: Color.Blue
-                }
-              ]
-            }
-          ]
-        }}
+        rows={[
+          {
+            columns: [
+              { type: Type.Number, value: "10", reference: "num1" },
+              {
+                type: Type.Number,
+                value: "25",
+                reference: "num2",
+              },
+              {
+                type: Type.Expression,
+                value: "35",
+                reference: "sum",
+                color: Color.Blue
+              }
+            ]
+          }
+        ]}
       />
     </>
   );

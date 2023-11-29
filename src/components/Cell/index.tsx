@@ -9,14 +9,12 @@ import {
   TbVariable as ExpressonTypeIcon
 } from "react-icons/tb";
 
-import Column from "../../types/Column";
+import Cell from "../../types/Cell";
 import Color from "../../types/Color";
 
 import DataType from "../../types/Type";
 
-type Props = {
-  data: Column;
-};
+type Props = Cell;
 
 function getColor(color?: Color) {
   switch (color) {
@@ -28,6 +26,8 @@ function getColor(color?: Color) {
       return style.green;
     case Color.Blue:
       return style.blue;
+    default:
+      return null;
   }
 }
 
@@ -44,17 +44,29 @@ function getTypeIcon(type: DataType) {
   }
 }
 
-export default function Column({
-  data: { type, value, color, selected, reference }
+export default function Cell({
+  type,
+  value,
+  color,
+  heading,
+  selected,
+  disabled,
+  reference
 }: Props) {
+  const Tag = heading ? "th" : "td";
   const hasType = type !== null && type !== undefined;
   const hasContent = hasType || value;
 
   return (
-    <td className={clsx(style.td, getColor(color))}>
+    <Tag
+      className={clsx(
+        style.cell,
+        heading && style.heading,
+        disabled ? style.disabled : getColor(color)
+      )}>
       {selected && <div className={style.selected} />}
 
-      <div className={style.column}>
+      <div className={style.wrapper}>
         {reference && <div className={style.reference}>${reference}</div>}
         {hasContent && (
           <div className={clsx(style.content)}>
@@ -65,6 +77,6 @@ export default function Column({
           </div>
         )}
       </div>
-    </td>
+    </Tag>
   );
 }

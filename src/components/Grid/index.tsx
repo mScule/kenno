@@ -4,34 +4,28 @@ import Grid from "../../types/Grid";
 import first from "../../utility/array/first";
 import range from "../../utility/array/range";
 
-import Column from "../Column";
+import Cell from "../Cell";
 
-type Props = {
-  data: Grid;
-};
+type Props = Grid;
 
-export default function Grid({ data }: Props) {
+export default function Grid({ rows }: Props) {
   return (
     <div className={style.grid}>
       <table>
         <thead>
           <tr>
-            <td className={style.heading} />
-            {range(first(data.rows).columns.length).map(i => (
-              <td key={i} className={style.heading}>
-                <span>{i}</span>
-              </td>
+            <Cell heading />
+            {range(first(rows).columns.length).map(i => (
+              <Cell key={i} reference="oij" heading value={String(i)} />
             ))}
           </tr>
         </thead>
         <tbody>
-          {data.rows.map((row, i) => (
+          {rows.map((row, i) => (
             <tr key={i}>
-              <td className={style.heading}>
-                <span>{i}</span>
-              </td>
+              <Cell heading value={String(i)} />
               {row.columns.map((column, i) => (
-                <Column key={i} data={column} />
+                <Cell key={i} {...column} />
               ))}
             </tr>
           ))}
