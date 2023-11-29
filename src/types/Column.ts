@@ -4,7 +4,7 @@ import Tag from "./Tag";
 
 type Column = Referable & {
   type?: DataType;
-  content?: string;
+  value?: string;
   tag?: Tag;
   selected?: boolean;
 };

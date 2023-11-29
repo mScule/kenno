@@ -1,6 +1,5 @@
 import style from "./style.module.css";
 
-import isAbsent from "../../utility/isAbsent";
 import clsx from "clsx";
 
 import {
@@ -14,6 +13,7 @@ import Column from "../../types/Column";
 import Tag from "../../types/Tag";
 
 import DataType from "../../types/DataType";
+import isAbsent from "../../utility/isAbsent";
 
 type Props = {
   data: Column;
@@ -29,36 +29,42 @@ function getTagColor(tag?: Tag) {
       return style.tagGreen;
     case Tag.Blue:
       return style.tagBlue;
-    default:
-      return null;
   }
 }
 
 function getTypeIcon(type: DataType) {
   switch (type) {
     case DataType.Boolean:
-      return <BooleanTypeIcon />;
+      return <BooleanTypeIcon alt="Boolean" title="Boolean" />;
     case DataType.Number:
-      return <NumberTypeIcon />;
+      return <NumberTypeIcon alt="Number" title="Number" />;
     case DataType.String:
-      return <StringTypeIcon />;
+      return <StringTypeIcon alt="String" title="String" />;
     case DataType.Expression:
-      return <ExpressonTypeIcon />;
+      return <ExpressonTypeIcon alt="Expression" title="Expression" />;
   }
 }
 
 export default function Column({
-  data: { type, content, tag, selected, reference }
+  data: { type, value, tag, selected, reference }
 }: Props) {
+  const hasType = !isAbsent(type);
+  const hasContent = hasType || value;
+
   return (
-    <td className={clsx(getTagColor(tag), style.tableData)}>
-      {reference && <div className={style.reference}>${reference}</div>}
-      <div className={clsx(style.column, selected && style.selected)}>
-        <div className={clsx(selected && style.selectedBorder)} />
-        <div className={style.typeIcon}>
-          {!isAbsent(type) && getTypeIcon(type!)}
-        </div>
-        <span>{content && content}</span>
+    <td className={clsx(style.td, getTagColor(tag))}>
+      {selected && <div className={style.selected} />}
+
+      <div className={style.column}>
+        {reference && <div className={style.reference}>${reference}</div>}
+        {hasContent && (
+          <div className={clsx(style.content)}>
+            {hasType && (
+              <div className={style.typeIcon}>{getTypeIcon(type!)}</div>
+            )}
+            {value && <span>{value}</span>}
+          </div>
+        )}
       </div>
     </td>
   );
