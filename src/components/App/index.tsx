@@ -1,8 +1,7 @@
 import style from "./style.module.css";
 
-import Grid from "../Grid";
+import Table from "../Table";
 import Card from "../Card";
-
 import Type from "../../types/Type";
 import Color from "../../types/Color";
 
@@ -13,22 +12,28 @@ export default function App() {
         <h1>Kenno</h1>
       </Card>
 
-      <Grid
-        rows={[
+      <Table
+        head={[
           {
             columns: [
-              { type: Type.Number, value: "10", reference: "num1" },
-              {
-                type: Type.Number,
-                value: "25",
-                reference: "num2",
-              },
-              {
-                type: Type.Expression,
-                value: "35",
-                reference: "sum",
-                color: Color.Blue
-              }
+              {value: "H", color: Color.Red, heading: true },
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          }
+        ]}
+        body={[
+          {
+            columns: [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
             ]
           }
         ]}
