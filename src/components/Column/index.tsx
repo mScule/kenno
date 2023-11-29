@@ -10,25 +10,24 @@ import {
 } from "react-icons/tb";
 
 import Column from "../../types/Column";
-import Tag from "../../types/Tag";
+import Color from "../../types/Color";
 
-import DataType from "../../types/DataType";
-import isAbsent from "../../utility/isAbsent";
+import DataType from "../../types/Type";
 
 type Props = {
   data: Column;
 };
 
-function getTagColor(tag?: Tag) {
-  switch (tag) {
-    case Tag.Red:
-      return style.tagRed;
-    case Tag.Yellow:
-      return style.tagYellow;
-    case Tag.Green:
-      return style.tagGreen;
-    case Tag.Blue:
-      return style.tagBlue;
+function getColor(color?: Color) {
+  switch (color) {
+    case Color.Red:
+      return style.red;
+    case Color.Yellow:
+      return style.yellow;
+    case Color.Green:
+      return style.green;
+    case Color.Blue:
+      return style.blue;
   }
 }
 
@@ -46,13 +45,13 @@ function getTypeIcon(type: DataType) {
 }
 
 export default function Column({
-  data: { type, value, tag, selected, reference }
+  data: { type, value, color, selected, reference }
 }: Props) {
-  const hasType = !isAbsent(type);
+  const hasType = type !== null && type !== undefined;
   const hasContent = hasType || value;
 
   return (
-    <td className={clsx(style.td, getTagColor(tag))}>
+    <td className={clsx(style.td, getColor(color))}>
       {selected && <div className={style.selected} />}
 
       <div className={style.column}>
@@ -60,7 +59,7 @@ export default function Column({
         {hasContent && (
           <div className={clsx(style.content)}>
             {hasType && (
-              <div className={style.typeIcon}>{getTypeIcon(type!)}</div>
+              <div className={style.typeIcon}>{getTypeIcon(type)}</div>
             )}
             {value && <span>{value}</span>}
           </div>

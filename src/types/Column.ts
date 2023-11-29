@@ -1,11 +1,11 @@
 import Referable from "./Referable";
-import DataType from "./DataType";
-import Tag from "./Tag";
+import Type from "./Type";
+import Color from "./Color";
 
 type Column = Referable & {
-  type?: DataType;
+  type?: Type;
   value?: string;
-  tag?: Tag;
+  color?: Color;
   selected?: boolean;
 };
 

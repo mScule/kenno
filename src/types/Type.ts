@@ -1,8 +1,8 @@
-enum DataType {
+enum Type {
     Boolean,
     Number,
     String,
     Expression
 }
 
-export default DataType;
+export default Type;

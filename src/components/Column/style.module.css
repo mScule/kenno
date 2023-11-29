@@ -59,16 +59,16 @@
   align-self: center;
 }
 
-.tagRed {
+.red {
   background-color: var(--color-red);
 }
-.tagGreen {
+.green {
   background-color: var(--color-green);
 }
-.tagBlue {
+.blue {
   background-color: var(--color-blue);
 }
-.tagYellow {
+.yellow {
   background-color: var(--color-yellow);
 }
 
@@ -99,42 +99,42 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .tagRed,
-  .tagGreen,
-  .tagBlue,
-  .tagYellow {
+  .red,
+  .green,
+  .blue,
+  .yellow {
     background-color: transparent;
     font-weight: bold;
   }
 
-  .tagRed svg {
+  .red svg {
     color: var(--color-red);
   }
-  .tagRed span {
+  .red span {
     color: var(--color-black);
     background: var(--color-red);
   }
 
-  .tagGreen svg {
+  .green svg {
     color: var(--color-green);
   }
-  .tagGreen span {
+  .green span {
     color: var(--color-black);
     background: var(--color-green);
   }
 
-  .tagBlue svg {
+  .blue svg {
     color: var(--color-blue);
   }
-  .tagBlue span {
+  .blue span {
     color: var(--color-black);
     background: var(--color-blue);
   }
 
-  .tagYellow svg {
+  .yellow svg {
     color: var(--color-yellow);
   }
-  .tagYellow span {
+  .yellow span {
     color: var(--color-black);
     background: var(--color-yellow);
   }
