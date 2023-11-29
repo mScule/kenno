@@ -48,7 +48,8 @@ export default function App() {
                 {
                   content:
                     "Mike is mike foo bar baz ipsum dolor ruudim beerum.",
-                  type: DataType.Expression
+                  type: DataType.Expression,
+                  selected: true
                 }
               ]
             },
@@ -67,12 +68,18 @@ export default function App() {
                     "This has multiple\n Lines. Hello oijsdfoijepifjpoij oij oiejwf woiefowjiei w owiejfow woiejf oiw eofijw owoeifwoe woeijfwo  woeijfj woieijfoiewjfoijweoif jfoiwefoijweofij wefoijwjiweofj ",
                   type: DataType.String,
                   tag: Tag.Yellow,
+                  selected: true,
                 }
               ]
             },
             {
               columns: [
-                { content: "Mike", type: DataType.String, tag: Tag.Blue },
+                {
+                  content: "Mike",
+                  type: DataType.String,
+                  tag: Tag.Blue,
+                  selected: true
+                },
                 { content: "Mike", type: DataType.String },
                 { content: "20", type: DataType.Number, tag: Tag.Green },
                 { content: "Mike is mike", type: DataType.Expression }
@@ -80,7 +87,7 @@ export default function App() {
             },
             {
               columns: [
-                { content: "Mike", type: DataType.String, tag: Tag.Blue },
+                { content: "Mike", type: DataType.String, selected: true },
                 { content: "Mike", type: DataType.String },
                 { content: "20", type: DataType.Number, tag: Tag.Green },
                 { content: "Mike is mike", type: DataType.Expression }
@@ -92,14 +99,6 @@ export default function App() {
                 { content: "20", type: DataType.Number },
                 { content: "20", type: DataType.Number },
                 { content: "20", type: DataType.Number, tag: Tag.Yellow }
-              ]
-            },
-            {
-              columns: [
-                { content: "Mike", type: DataType.String, tag: Tag.Blue },
-                { content: "Mike", type: DataType.String },
-                { content: "20", type: DataType.Number, tag: Tag.Red },
-                { content: "Mike is mike", type: DataType.Expression }
               ]
             }
           ]

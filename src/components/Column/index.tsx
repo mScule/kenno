@@ -47,10 +47,13 @@ function getTypeIcon(type: DataType) {
   }
 }
 
-export default function Column({ data: { type, content, tag } }: Props) {
+export default function Column({
+  data: { type, content, tag, selected }
+}: Props) {
   return (
-    <td className={clsx(getTagColor(tag))}>
-      <div className={style.column}>
+    <td className={clsx(getTagColor(tag), style.tableData)}>
+      <div className={clsx(style.column, selected && style.selected)}>
+        <div className={clsx(selected && style.selectedBorder)} />
         <div className={style.typeIcon}>
           {!isAbsent(type) && getTypeIcon(type!)}
         </div>

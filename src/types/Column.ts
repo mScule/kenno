@@ -5,6 +5,7 @@ type Column = {
   type?: DataType;
   content?: string;
   tag?: Tag;
+  selected?: boolean;
 };
 
 export default Column;
