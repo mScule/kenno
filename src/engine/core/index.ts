@@ -6,25 +6,21 @@ import Pointer from "../../types/Pointer";
 
 import { createEmptyCell } from "../cells/emptyCell";
 import { createError } from "../../utility/error";
-import CoreCell from "../../types/cells/CoreCell";
+import CoreCell from "../../types/CoreCell";
 
 function requireRow(core: Core, index: number) {
-  if (!(index >= 0 && index < core.rows - 1)) {
-    throw createError(`Cannot remove row ${index}. It doesn't exist`);
+  if (!(index >= 0 && index < core.rows)) {
+    throw createError(`Cannot access row ${index}. It doesn't exist`);
   }
 }
 
 function requireColumn(core: Core, index: number) {
-  if (!(index >= 0 && index < core.columns - 1)) {
-    throw createError(`Cannot remove column ${index}. It doesn't exist`);
+  if (!(index >= 0 && index < core.columns)) {
+    throw createError(`Cannot access column ${index}. It doesn't exist`);
   }
 }
 
 export function createCore(rows: number, columns: number): Core {
-  if (!(rows >= 0 && columns >= 0)) {
-    throw createError(`Core has to contain atleast one row with one column`);
-  }
-
   const core: Core = {
     rows,
     columns,
@@ -90,16 +86,23 @@ export function removeLastRow(core: Core) {
   removeRow(core, core.rows - 1);
 }
 
-export function getCell(core: Core, {row, column}: Pointer): CoreCell<unknown> {
-    requireRow(core, row);
-    requireColumn(core, column);
+export function getCell<T extends CoreCell<unknown>>(
+  core: Core,
+  { row, column }: Pointer
+): CoreCell<T> {
+  requireRow(core, row);
+  requireColumn(core, column);
 
-    return core.data[row][column];
+  return core.data[row][column] as CoreCell<T>;
 }
 
-export function setCell(core: Core, {row, column}: Pointer, cell: CoreCell<unknown>) {
-    requireRow(core, row);
-    requireColumn(core, row);
+export function setCell(
+  core: Core,
+  { row, column }: Pointer,
+  cell: CoreCell<unknown>
+) {
+  requireRow(core, row);
+  requireColumn(core, row);
 
-    core.data[row][column] = cell;
+  core.data[row][column] = cell;
 }

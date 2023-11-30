@@ -1,4 +1,4 @@
-import CoreCell from "./cells/CoreCell";
+import CoreCell from "./CoreCell";
 
 type CoreRow = CoreCell<unknown>[];
 

@@ -1,5 +1,5 @@
-import EmptyCell from "../../types/cells/EmptyCell";
-import CoreCell from "../../types/cells/CoreCell";
+import EmptyCell from "../../types/EmptyCell";
+import CoreCell from "../../types/CoreCell";
 
 export function createEmptyCell(): EmptyCell {
   return null;

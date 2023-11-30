@@ -1,5 +1,5 @@
 import GenericCell from "./CoreCell";
-import Type from "../Type";
+import Type from "./Type";
 
 type NumberCell = GenericCell<number> & { type: Type.Number };
 

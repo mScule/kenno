@@ -1,4 +1,4 @@
-import GenericCell from "./cells/CoreCell";
+import GenericCell from "./CoreCell";
 
 /**
  * Do not modify straight. Use core functions instead.

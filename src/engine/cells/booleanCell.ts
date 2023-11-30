@@ -1,11 +1,13 @@
-import BooleanCell from "../../types/cells/BooleanCell";
-import GenericCell from "../../types/cells/CoreCell";
+import BooleanCell from "../../types/BooleanCell";
+import CoreCell from "../../types/CoreCell";
 import Type from "../../types/Type";
 
 export function createBooleanCell(value: boolean): BooleanCell {
   return { type: Type.Boolean, value };
 }
 
-export function isBooleanCell(cell: GenericCell<unknown>): boolean {
+export function isBooleanCell(cell: CoreCell<unknown>): boolean {
+  if (!cell) return false;
+
   return cell.type === Type.Boolean;
 }
