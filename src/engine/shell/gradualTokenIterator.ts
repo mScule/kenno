@@ -157,11 +157,10 @@ function buildSymbolToken({
   const current = getCurrent();
   let value = "";
 
-  const unknownSymbolicLiteral = createError(
-    `Symbolic literal ${current} is not supported`
-  );
+  const symbolError = () =>
+    createError(`Symbol ${value} is not supported`);
 
-  switch (current) {
+  switch (getCurrent()) {
     case "[":
     case "]":
     case "(":
@@ -171,15 +170,15 @@ function buildSymbolToken({
     case "?":
     case ":":
     case "+":
-    case "*":
     case "/":
     case "%":
-      value = current;
+    case "*":
+      value = getCurrent()!;
       getNext();
       break;
 
     case "!":
-      value = current;
+      value += getCurrent();
       getNext();
 
       if (getCurrent() === "=") {
@@ -189,17 +188,18 @@ function buildSymbolToken({
       break;
 
     case "=":
-      value = current;
+      value += getCurrent();
       getNext();
 
       if (getCurrent() === "=") {
         value += getCurrent();
         getNext();
+        break;
       }
-      break;
+      throw symbolError();
 
     case "<":
-      value = current;
+      value += getCurrent();
       getNext();
 
       if (getCurrent() === "-" || getCurrent() === "=") {
@@ -209,7 +209,7 @@ function buildSymbolToken({
       break;
 
     case "-":
-      value = current;
+      value += getCurrent();
       getNext();
 
       if (getCurrent() === ">") {
@@ -219,7 +219,7 @@ function buildSymbolToken({
       break;
 
     case ">":
-      value = current;
+      value += getCurrent();
       getNext();
 
       if (getCurrent() === "=") {
@@ -229,31 +229,31 @@ function buildSymbolToken({
       break;
 
     case "&":
-      value = current;
+      value += getCurrent();
       getNext();
 
       if (getCurrent() === "&") {
         value += getCurrent();
         getNext();
-        break;
       } else {
-        throw unknownSymbolicLiteral;
+        throw symbolError();
       }
+      break;
 
     case "|":
-      value = current;
+      value += getCurrent();
       getNext();
 
       if (getCurrent() === "|") {
         value += getCurrent();
         getNext();
-        break;
       } else {
-        throw unknownSymbolicLiteral;
+        throw symbolError();
       }
+      break;
 
     default:
-      throw unknownSymbolicLiteral;
+      throw createError(`Symbolic literal ${current} is unknown`);
   }
 
   return { type: TokenType.Symbol, value };

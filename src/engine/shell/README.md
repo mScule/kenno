@@ -68,20 +68,20 @@ $(0: $name, $age)
 | `NUMBER`   | A number value that can have a fractional part that's separated with "`.`" |
 
 ```ebnf
-     literal = STRING | BOOLEAN | NUMBER | array | "null";
+     literal = array | STRING | BOOLEAN | NUMBER | "null";
        array = "[" list "]";
        range = expression (("<-" | "->") expression)?;
         list = range ("," range)*;
      pointer = "(" list ":" list ")";
    reference = "$" (ID | pointer);
      command = ID "(" list ")";
-     primary = literal
-             | reference
+     primary = "(" expression ")"
              | command
-             | "(" expression ")";
+             | reference
+             | literal;
        unary = primary | (("+" | "-" | "!")? unary);
 multiclative = unary (("*" | "/" | "%") unary)*;
-    additive = multiclative ("+" | "-") multiclative;
+    additive = multiclative (("+" | "-") multiclative)*;
   relational = additive (("<" | ">" | "<=" | ">=") additive)*;
     equality = relational (("==" | "!=") relational)*;
          and = equality (("&&") equality)*;

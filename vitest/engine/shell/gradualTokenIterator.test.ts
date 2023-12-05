@@ -383,3 +383,15 @@ test(`$(0:4)+$(10:40)/1.2 with blanks`, () => {
   expect(getCurrent()?.value).toEqual("1.2");
   getNext();
 });
+
+test(`&`, () => {
+  expect(() => initTokenizer("&")).toThrowError();
+});
+
+test(`|`, () => {
+  expect(() => initTokenizer("|")).toThrowError();
+});
+
+test(`=`, () => {
+  expect(() => initTokenizer("=")).toThrowError();
+});
