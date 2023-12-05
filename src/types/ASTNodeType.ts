@@ -1,20 +1,20 @@
 enum ASTNodeType {
-    Expression,
-    Or,
-    And,
-    Equality,
-    Relational,
-    Additive,
-    Multiclative,
-    Unary,
-    Primary,
-    Command,
-    Reference,
-    Pointer,
-    List,
-    Range,
-    Array,
-    Literal
+    Expression = "Expression",
+    Or = "Or",
+    And = "And",
+    Equality = "Equality",
+    Relational = "Relational",
+    Additive = "Additive",
+    Multiclative = "Multiclative",
+    Unary = "Unary",
+    Primary = "Primary",
+    Command = "Command",
+    Reference = "Reference",
+    Pointer = "Pointer",
+    List = "List",
+    Range = "Range",
+    Array = "Array",
+    Literal = "Literal"
 }
 
 export default ASTNodeType;

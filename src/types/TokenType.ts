@@ -1,10 +1,10 @@
 enum TokenType {
-  Null,
-  Boolean,
-  String,
-  Number,
-  Id,
-  Symbol
+  Null = "Null",
+  Boolean = "Boolean",
+  String = "String",
+  Number = "Number",
+  Id = "Id",
+  Symbol = "Symbol"
 }
 
 export default TokenType;
