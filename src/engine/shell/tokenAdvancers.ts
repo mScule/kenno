@@ -22,7 +22,7 @@ function requireSomeType(
 
   if (!(currentType && matches.includes(currentType))) {
     throw createError(
-      `Token type is incorrect. Some of ${matches.toString()} was needed. ${currentType} was given`
+      `Token type is incorrect. Some of ${matches.toString()} was expected. ${currentType} was given`
     );
   }
 }

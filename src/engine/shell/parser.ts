@@ -82,9 +82,14 @@ function list(iterator: GradualIterator<Token>): ASTNode {
     return first;
   }
 
-  iterator.getNext();
+  const children = [first];
 
-  return { type: ASTNodeType.List, children: [first, list(iterator)] };
+  while(isSymbol(iterator, ",")) {
+    iterator.getNext();
+    children.push(range(iterator));
+  }
+
+  return { type: ASTNodeType.List, children };
 }
 
 /**
@@ -270,9 +275,14 @@ function and(iterator: GradualIterator<Token>): ASTNode {
     return first;
   }
 
-  iterator.getNext();
+  const children = [first];
 
-  return { type: ASTNodeType.And, children: [first, and(iterator)] };
+  while(isAndOperator(iterator)) {
+    iterator.getNext();
+    children.push(equality(iterator))
+  }
+
+  return { type: ASTNodeType.And, children };
 }
 
 /**
@@ -285,9 +295,14 @@ function or(iterator: GradualIterator<Token>): ASTNode {
     return first;
   }
 
-  iterator.getNext();
+  const children = [first];
 
-  return { type: ASTNodeType.Or, children: [first, or(iterator)] };
+  while(isOrOperator(iterator)) {
+    iterator.getNext();
+    children.push(and(iterator))
+  }
+
+  return { type: ASTNodeType.Or, children };
 }
 
 /**

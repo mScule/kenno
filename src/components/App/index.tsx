@@ -4,7 +4,11 @@ import parser from "../../engine/shell/parser";
 import style from "./style.module.css";
 
 export default function App() {
-  console.log(parser(gradualTokenIterator(gradualStringIterator("10 + 10 * 10"))))
+  console.log(
+    JSON.stringify(
+      parser(gradualTokenIterator(gradualStringIterator("$(10->3:4,5,$Mike,40) * 30")))
+    )
+  );
   return (
     <>
       <h1>Engine</h1>
