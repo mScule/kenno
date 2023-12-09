@@ -1,6 +1,6 @@
-import GradualIterator from "../../types/GradualIterator";
-import Token from "../../types/Token";
-import TokenType from "../../types/TokenType";
+import GradualIterator from "../../../types/GradualIterator";
+import Token from "../../../types/Token";
+import TokenType from "../../../types/TokenType";
 
 function tokenComparator(
   { getCurrent }: GradualIterator<Token>,

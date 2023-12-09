@@ -1,6 +1,6 @@
 import ExpressionCell from "../../types/ExpressionCell";
 import CoreCell from "../../types/CoreCell";
-import Type from "../../types/Type";
+import Type from "../../types/CellType";
 
 export function createExpressionCell(value: string): ExpressionCell {
   return { type: Type.Expression, value };

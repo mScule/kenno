@@ -1,6 +1,6 @@
 import NumberCell from "../../types/NumberCell";
 import CoreCell from "../../types/CoreCell";
-import Type from "../../types/Type";
+import Type from "../../types/CellType";
 
 export function createNumberCell(value: number): NumberCell {
   return { type: Type.Number, value };

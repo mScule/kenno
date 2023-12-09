@@ -1,6 +1,6 @@
 import StringCell from "../../types/StringCell";
 import CoreCell from "../../types/CoreCell";
-import Type from "../../types/Type";
+import Type from "../../types/CellType";
 
 export function createStringCell(value: string): StringCell {
   return { type: Type.String, value };

@@ -1,8 +1,8 @@
-import GradualIterator from "../../types/GradualIterator";
-import Token from "../../types/Token";
-import TokenType from "../../types/TokenType";
+import GradualIterator from "../../../types/GradualIterator";
+import Token from "../../../types/Token";
+import TokenType from "../../../types/TokenType";
 
-import { createError } from "../../utility/error";
+import { createError } from "../../../utility/error";
 
 function isBlank(char: string) {
   return char.match(/\s|\n|\t|\r/);
@@ -259,7 +259,7 @@ function buildSymbolToken({
   return { type: TokenType.Symbol, value };
 }
 
-export default function gradualTokenIterator(
+export default function tokenize(
   iterator: GradualIterator<string>
 ): GradualIterator<Token> {
   let token: Token | null = null;

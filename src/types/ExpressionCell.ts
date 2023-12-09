@@ -1,5 +1,5 @@
 import GenericCell from "./CoreCell";
-import Type from "./Type";
+import Type from "./CellType";
 
 type ExpressionCell = GenericCell<string> & { type: Type.Expression };
 

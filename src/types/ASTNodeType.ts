@@ -8,7 +8,7 @@ enum ASTNodeType {
     Multiclative = "Multiclative",
     Unary = "Unary",
     Primary = "Primary",
-    Command = "Command",
+    FunctionCall = "FunctionCall",
     Reference = "Reference",
     Pointer = "Pointer",
     List = "List",

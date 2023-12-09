@@ -1,8 +1,8 @@
-import GradualIterator from "../../types/GradualIterator";
-import Token from "../../types/Token";
-import TokenType from "../../types/TokenType";
+import GradualIterator from "../../../types/GradualIterator";
+import Token from "../../../types/Token";
+import TokenType from "../../../types/TokenType";
 
-import { createError } from "../../utility/error";
+import { createError } from "../../../utility/error";
 
 function requireType(iterator: GradualIterator<Token>, type: TokenType) {
   const currentType = iterator.getCurrent()?.type;

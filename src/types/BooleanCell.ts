@@ -1,5 +1,5 @@
 import GenericCell from "./CoreCell";
-import Type from "./Type";
+import Type from "./CellType";
 
 type BooleanCell = GenericCell<boolean> & { type: Type.Boolean };
 

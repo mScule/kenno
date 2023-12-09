@@ -1,14 +1,14 @@
 import { test, expect } from "vitest";
-import stringIterator from "../../../src/engine/shell/gradualStringIterator";
+import read from "../../../src/engine/shell/read";
 
 test("first char is null in empty string", () => {
-  const { getCurrent } = stringIterator("");
+  const { getCurrent } = read("");
 
   expect(getCurrent()).toEqual(null);
 });
 
 test("second char is empty string", () => {
-  const { getCurrent, getNext } = stringIterator("");
+  const { getCurrent, getNext } = read("");
 
   getNext();
 
@@ -16,13 +16,13 @@ test("second char is empty string", () => {
 });
 
 test("first char is 'H' in 'Hello'", () => {
-  const { getCurrent } = stringIterator("Hello");
+  const { getCurrent } = read("Hello");
 
   expect(getCurrent()).toEqual("H");
 });
 
 test("second char is 'e' in 'Hello'", () => {
-  const { getCurrent, getNext } = stringIterator("Hello");
+  const { getCurrent, getNext } = read("Hello");
 
   getNext();
 
@@ -30,7 +30,7 @@ test("second char is 'e' in 'Hello'", () => {
 });
 
 test("last char is 'o'", () => {
-  const { getCurrent, getNext } = stringIterator("Hello");
+  const { getCurrent, getNext } = read("Hello");
 
   getNext(); // e
   getNext(); // l
@@ -41,7 +41,7 @@ test("last char is 'o'", () => {
 });
 
 test("last char is 'o'", () => {
-  const { getCurrent, getNext } = stringIterator("Hello");
+  const { getCurrent, getNext } = read("Hello");
 
   getNext(); // e
   getNext(); // l

@@ -1,6 +1,6 @@
-import GradualIterator from "../../types/GradualIterator";
+import GradualIterator from "../../../types/GradualIterator";
 
-export default function gradualStringIterator(
+export default function read(
   input: string
 ): GradualIterator<string> {
   let index = 0;

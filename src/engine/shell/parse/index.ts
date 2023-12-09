@@ -1,8 +1,8 @@
-import ASTNode from "../../types/ASTNode";
-import ASTNodeType from "../../types/ASTNodeType";
-import GradualIterator from "../../types/GradualIterator";
-import Token from "../../types/Token";
-import TokenType from "../../types/TokenType";
+import ASTNode from "../../../types/ASTNode";
+import ASTNodeType from "../../../types/ASTNodeType";
+import GradualIterator from "../../../types/GradualIterator";
+import Token from "../../../types/Token";
+import TokenType from "../../../types/TokenType";
 
 import {
   isAdditiveOperator,
@@ -109,9 +109,9 @@ function pointer(iterator: GradualIterator<Token>): ASTNode {
 }
 
 /**
- * command = ID "(" list ")"
+ * functionCall = ID "(" list ")"
  */
-function command(iterator: GradualIterator<Token>): ASTNode {
+function functionCall(iterator: GradualIterator<Token>): ASTNode {
   const token = advanceWithType(iterator, TokenType.Id);
 
   advanceWithSymbol(iterator, "(");
@@ -119,7 +119,7 @@ function command(iterator: GradualIterator<Token>): ASTNode {
   advanceWithSymbol(iterator, ")");
 
   return {
-    type: ASTNodeType.Command,
+    type: ASTNodeType.FunctionCall,
     token,
     children: [parameters]
   };
@@ -157,7 +157,7 @@ function primary(iterator: GradualIterator<Token>): ASTNode {
       return node;
 
     case isType(iterator, TokenType.Id):
-      return command(iterator);
+      return functionCall(iterator);
 
     case isSymbol(iterator, "$"):
       return reference(iterator);
@@ -327,6 +327,6 @@ function expression(iterator: GradualIterator<Token>): ASTNode {
   };
 }
 
-export default function parser(iterator: GradualIterator<Token>): ASTNode {
+export default function parse(iterator: GradualIterator<Token>): ASTNode {
   return expression(iterator);
 }

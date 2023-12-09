@@ -1,10 +1,10 @@
 import { test, expect } from "vitest";
-import gradualStringIterator from "../../../src/engine/shell/gradualStringIterator";
-import gradualTokenIterator from "../../../src/engine/shell/gradualTokenIterator";
+import read from "../../../src/engine/shell/read";
+import tokenize from "../../../src/engine/shell/tokenize";
 import TokenType from "../../../src/types/TokenType";
 
 function initTokenizer(input: string) {
-  return gradualTokenIterator(gradualStringIterator(input));
+  return tokenize(read(input));
 }
 
 // skipBlanks

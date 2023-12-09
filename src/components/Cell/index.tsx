@@ -12,7 +12,7 @@ import {
 import Cell from "../../types/Cell";
 import Color from "../../types/Color";
 
-import DataType from "../../types/Type";
+import DataType from "../../types/CellType";
 
 type Props = Cell;
 

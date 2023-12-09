@@ -1,8 +1,8 @@
-import Type from "./Type";
+import CellType from "./CellType";
 import Color from "./Color";
 
 type Cell = {
-  type?: Type;
+  type?: CellType;
   value?: string;
   color?: Color;
   heading?: boolean;
