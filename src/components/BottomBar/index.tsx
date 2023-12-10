@@ -4,10 +4,10 @@ import Button from "../Button";
 import {
   TbCircleX as RemoveIcon,
   TbCirclePlus as AddIcon,
-  // TbPlayerSkipBack as StartTableIcon,
-  // TbPlayerTrackPrev as PrevTableIcon,
-  // TbPlayerTrackNext as NextTableIcon,
-  // TbPlayerSkipForward as EndTableIcon
+  TbPlayerSkipBack as StartTableIcon,
+  TbPlayerTrackPrev as PrevTableIcon,
+  TbPlayerTrackNext as NextTableIcon,
+  TbPlayerSkipForward as EndTableIcon
 } from "react-icons/tb";
 import Divider from "../Divider";
 import Direction from "../../types/Direction";
@@ -16,7 +16,7 @@ export default function BottomBar() {
   return (
     <nav className={style.bar}>
       <div className={style.options}>
-        {/* <div className={style.selector}>
+        <div className={style.selector}>
           <Button>
             <StartTableIcon size={16} />
           </Button>
@@ -40,7 +40,7 @@ export default function BottomBar() {
           </Button>
         </div>
 
-        <Divider direction={Direction.Column} /> */}
+        <Divider direction={Direction.Column} />
 
         <div className={style.selector}>
           <Button green>

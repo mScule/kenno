@@ -49,10 +49,11 @@
   position: relative;
   max-width: 15rem;
   min-width: 1rem;
+  width: max-content;
   font-family: "roboto-mono";
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   font-size: smaller;
   gap: 0.5rem;
@@ -60,6 +61,12 @@
 }
 .content > div {
   color: var(--color-font-secondary);
+}
+
+.content > span {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .typeIcon {

@@ -8,9 +8,16 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   red?: boolean;
 };
 
-export default function Button({ children, green, yellow, red }: Props) {
+export default function Button({
+  children,
+  green,
+  yellow,
+  red,
+  ...rest
+}: Props) {
   return (
     <button
+      {...rest}
       className={clsx(
         style.button,
         green && style.green,

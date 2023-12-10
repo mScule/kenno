@@ -12,7 +12,7 @@ import "./assets/global-styles/theme.css";
 
 import "./assets/global-styles/style.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById("app")!).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>

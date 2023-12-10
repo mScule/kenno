@@ -1,16 +1,13 @@
 .bar {
-  position: fixed;
-  bottom: 0;
   width: 100%;
-  height: 2rem;
+
+  padding: 0.5rem 1rem 0.5rem 1rem ;
+
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0.5rem 0 0.5rem;
-  margin: 0;
-  border-top: solid 1px;
-  border-color: var(--color-border);
+  background-color: var(--color-background);
 }
 
 .selector {
@@ -29,4 +26,3 @@
     justify-content: center;
     gap: 0.5rem;
 }
-

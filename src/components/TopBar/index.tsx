@@ -7,7 +7,7 @@ export default function TopBar() {
   return (
     <nav className={style.topBar}>
       <div className={style.logo}>
-        Kenno
+        K
         <Icon size={16} />
       </div>
 
