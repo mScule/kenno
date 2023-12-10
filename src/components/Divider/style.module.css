@@ -1,0 +1,12 @@
+.divider {
+  border: solid 0.5px var(--color-border);
+  border-radius: 2px;
+}
+
+.column {
+  height: auto;
+}
+
+.row {
+  width: auto;
+}

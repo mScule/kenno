@@ -1,0 +1,43 @@
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 4px;
+
+  font-family: var(--font-main);
+  font-weight: 400;
+  color: var(--color-font-secondary);
+}
+
+.button:hover {
+  cursor: pointer;
+  color: var(--color-font);
+  background: var(--color-fill-secondary);
+}
+
+.green:hover {
+  background: var(--color-green);
+}
+
+.yellow:hover {
+  background: var(--color-yellow);
+}
+
+.red:hover {
+  background: var(--color-red);
+}
+
+@media (prefers-color-scheme: dark) {
+  .green:hover,
+  .yellow:hover,
+  .red:hover {
+    color: var(--color-background);
+  }
+}

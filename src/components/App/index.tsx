@@ -1,3 +1,5 @@
+import style from "./style.module.css";
+
 import { createCore, setCell } from "../../engine/core";
 import { useState } from "react";
 import { createNumberCell } from "../../engine/cells/numberCell";
@@ -12,6 +14,8 @@ import Cell from "../../types/Cell";
 import Type from "../../types/CellType";
 import ShellResultType from "../../types/ShellResultType";
 import Color from "../../types/Color";
+import TopBar from "../TopBar";
+import BottomBar from "../BottomBar";
 
 const variables: Record<string, unknown> = {
   first: "Mike",
@@ -24,7 +28,7 @@ const core = createCore(10, 10);
 setCell(
   core,
   { row: 0, column: 0 },
-  createExpressionCell(`"Total:" + SUM($(1->4:0))`)
+  createExpressionCell(`"Total: " + SUM($(1->4:0))`)
 );
 setCell(core, { row: 1, column: 0 }, createNumberCell(1200));
 setCell(core, { row: 2, column: 0 }, createNumberCell(2000));
@@ -35,7 +39,8 @@ export default function App() {
   const [c] = useState(core);
 
   return (
-    <>
+    <main className={style.app}>
+      <TopBar />
       <Table
         head={[
           {
@@ -73,9 +78,7 @@ export default function App() {
                     type: Type.Expression,
                     value: result.value,
                     color:
-                      result.type === ShellResultType.Failure
-                        ? Color.Red
-                        : null
+                      result.type === ShellResultType.Failure ? Color.Red : null
                   };
 
                 default:
@@ -88,6 +91,7 @@ export default function App() {
           ]
         }))}
       />
-    </>
+      <BottomBar />
+    </main>
   );
 }
