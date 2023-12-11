@@ -6,8 +6,11 @@ import Divider from "../Divider";
 import Stack from "../Stack";
 import Button from "../Button";
 import CellType from "../../types/CellType";
+import Select from "../Select";
+import { useState } from "react";
 
 export default function EditArea() {
+  const [example, setExample] = useState(CellType.Boolean);
   return (
     <div className={style.wrapper}>
       <Card>
@@ -17,12 +20,19 @@ export default function EditArea() {
             style={{ justifyContent: "start", gap: "1rem" }}>
             <h3>Cell</h3>
 
-            <select>
-              <option value={CellType.Boolean}>boolean</option>
-              <option value={CellType.Number}>number</option>
-              <option value={CellType.String}>string</option>
-              <option value={CellType.Expression}>expression</option>
-            </select>
+            <Select
+              options={[
+                { name: "Boolean", value: CellType.Boolean },
+                { name: "Number", value: CellType.Number },
+                { name: "String", value: CellType.String },
+                { name: "Expression", value: CellType.Expression }
+              ]}
+              selected={example}
+              onSelect={value => {
+                setExample(value);
+              }}
+            />
+
             <input type="text" name="input" placeholder="$ref" />
 
             <textarea name="input" placeholder="f(x)" />
