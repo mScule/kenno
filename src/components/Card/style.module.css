@@ -1,3 +1,7 @@
 .card {
-    padding: 1rem;
+    padding: 0.5rem;
+    border: solid 1px var(--color-border);
+    border-radius: 4px;
+    height: inherit;
+    width: inherit;
 }

@@ -16,7 +16,12 @@ import TopBar from "../TopBar";
 import BottomBar from "../BottomBar";
 import TableControls from "../TableControls";
 import DragArea from "../DragArea";
+import Stack from "../Stack/index.tsx";
+import EditArea from "../EditArea/index.tsx";
+import Direction from "../../types/Direction.ts";
+
 import { createStringCell } from "../../engine/cells/stringCell.ts";
+import Divider from "../Divider/index.tsx";
 
 const variables: Record<string, unknown> = {
   first: "Mike",
@@ -24,7 +29,7 @@ const variables: Record<string, unknown> = {
   age: 20
 };
 
-const core = createCore(5, 15);
+const core = createCore(11, 11);
 
 setCell(
   core,
@@ -38,74 +43,77 @@ setCell(core, { row: 4, column: 0 }, createNumberCell(20));
 setCell(
   core,
   { row: 3, column: 10 },
-  createStringCell("Hello hello hello hello Hello hello hello hello Hello hello hello hello Hello hello hello hello Hello hello hello hello")
+  createStringCell(
+    "Hello hello hello hello Hello hello hello hello Hello hello hello hello Hello hello hello hello Hello hello hello hello"
+  )
 );
 
 export default function App() {
   const [c] = useState(core);
 
   return (
-    <>
+    <Stack direction={Direction.Column}>
       <TopBar />
-
       <TableControls />
 
-      <DragArea>
-        <Table
-          head={[
-            {
+      <Stack direction={Direction.Row} style={{ padding: "0 0.5rem 0 0.5rem" }}>
+        <DragArea>
+          <Table
+            head={[
+              {
+                columns: [
+                  { heading: true },
+                  ...range(c.columns).map(
+                    index =>
+                      ({
+                        heading: true,
+                        value: index + ""
+                      } as Cell)
+                  )
+                ]
+              }
+            ]}
+            body={core.data.map((row, index) => ({
               columns: [
-                { heading: true },
-                ...range(c.columns).map(
-                  index =>
-                    ({
-                      heading: true,
-                      value: index + ""
-                    } as Cell)
-                )
+                { heading: true, value: index + "" },
+                ...row.map(column => {
+                  if (!column) {
+                    return {};
+                  }
+
+                  switch (column.type) {
+                    case Type.Expression:
+                      const result = shell(
+                        {
+                          core,
+                          variables,
+                          functions
+                        },
+                        column.value as string
+                      );
+                      return {
+                        type: Type.Expression,
+                        value: result.value,
+                        color:
+                          result.type === ShellResultType.Failure
+                            ? Color.Red
+                            : null
+                      };
+
+                    default:
+                      return {
+                        type: column.type,
+                        value: column.value + ""
+                      };
+                  }
+                })
               ]
-            }
-          ]}
-          body={core.data.map((row, index) => ({
-            columns: [
-              { heading: true, value: index + "" },
-              ...row.map(column => {
-                if (!column) {
-                  return {};
-                }
-
-                switch (column.type) {
-                  case Type.Expression:
-                    const result = shell(
-                      {
-                        core,
-                        variables,
-                        functions
-                      },
-                      column.value as string
-                    );
-                    return {
-                      type: Type.Expression,
-                      value: result.value,
-                      color:
-                        result.type === ShellResultType.Failure
-                          ? Color.Red
-                          : null
-                    };
-
-                  default:
-                    return {
-                      type: column.type,
-                      value: column.value + ""
-                    };
-                }
-              })
-            ]
-          }))}
-        />
-      </DragArea>
-
+            }))}
+          />
+        </DragArea>
+        <EditArea />
+      </Stack>
       <BottomBar />
-    </>
+    </Stack>
   );
 }

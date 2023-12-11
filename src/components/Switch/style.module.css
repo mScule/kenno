@@ -32,3 +32,7 @@
     background-color: var(--color-fill-secondary);
     color: var(--color-font);
 }
+
+.selected:hover {
+    background-color: var(--color-fill);
+}

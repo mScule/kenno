@@ -1,8 +1,8 @@
-enum Type {
+enum CellType {
     Boolean,
     Number,
     String,
     Expression
 }
 
-export default Type;
+export default CellType;

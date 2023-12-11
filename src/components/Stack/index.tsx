@@ -1,16 +1,17 @@
 import style from "./style.module.css";
 
 import Direction from "../../types/Direction";
-import Parent from "../../types/Parent";
 import clsx from "clsx";
+import { HTMLAttributes } from "react";
 
-type Props = Parent & {
+type Props = HTMLAttributes<HTMLDivElement> & {
   direction: Direction;
 };
 
-export default function Stack({ direction, children }: Props) {
+export default function Stack({ direction, children, ...rest }: Props) {
   return (
     <div
+      {...rest}
       className={clsx(
         style.stack,
         direction === Direction.Column && style.column,

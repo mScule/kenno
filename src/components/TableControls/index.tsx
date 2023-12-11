@@ -8,7 +8,7 @@ export default function TableControls() {
     <div className={style.wrapper}>
       <div className={style.borders}>
         <div className={style.controls}>
-          <h2>TableName</h2>
+          <h2>Grid 1</h2>
           <Switch left={<span>Front</span>} right={<span>Back</span>} />
           <Switch
             left={<PreviewIcon size={16} />}

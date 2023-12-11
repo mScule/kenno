@@ -1,5 +1,6 @@
 :root {
   --color-background: var(--color-white);
+  --color-background-secondary: var(--color-gray-bright);
   --color-border: var(--color-black);
 
   --color-fill: var(--color-white);
@@ -12,6 +13,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--color-gray-darker);
+    --color-background-secondary: var(--color-gray-black);
     --color-border: var(--color-gray);
 
     --color-fill: var(--color-gray);

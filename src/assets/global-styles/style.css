@@ -24,26 +24,49 @@ body {
   justify-content: space-between;
 }
 
+/* Input */
+input[type], select, textarea {
+  background-color: var(--color-background-secondary);
+  color: var(--color-font);
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+  font-family: var(--font-main-mono);
+  font-variant-ligatures: normal;
+}
+
+textarea {
+  resize: none;
+  height: 100%;
+  overflow: scroll;
+}
+
+select::after {
+  right: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 /* Scrollbar */
 
 *::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.35rem;
+  height: 0.35rem;
 }
 
 *::-webkit-scrollbar-corner {
-  background: var(--color-background);
+  background: var(--color-background-secondary);
+  border-bottom-right-radius: 4px;
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: var(--color-background-secondary);
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 3px;
 
   border: solid 1px var(--color-border);
-  background-color: var(--color-fill-secondary);
+  background: var(--color-background-secondary);
 }
 
 * {

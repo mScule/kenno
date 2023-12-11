@@ -1,0 +1,19 @@
+.wrapper {
+  height: 100%;
+}
+
+.wrapper h3 {
+    margin: 0;
+    padding: 0.5rem 0 0 0;
+}
+
+.panel {
+  width: 25rem;
+  height: 100%;
+}
+
+@media screen and (max-width: 50rem) {
+  .panel {
+    width: 10rem;
+  }
+}

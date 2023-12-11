@@ -1,5 +1,4 @@
 .cell {
-  position: relative;
   cursor: pointer;
 }
 
@@ -46,7 +45,6 @@
 }
 
 .content {
-  position: relative;
   max-width: 15rem;
   min-width: 1rem;
   width: max-content;
