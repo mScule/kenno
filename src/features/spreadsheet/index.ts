@@ -11,13 +11,23 @@ import {
 export const slice = createSlice({
   name: "spreadsheet",
   initialState: {
-    core: createCore(0, 0)
+    core: createCore(1, 1)
   },
   reducers: {
     addRow: state => addCoreRow(state.core),
     addColumn: state => addCoreColumn(state.core),
-    removeRow: state => removeLastCoreRow(state.core),
-    removeColumn: state => removeLastCoreColumn(state.core)
+    removeRow: state => {
+      if (state.core.rows === 1) {
+        return;
+      }
+      removeLastCoreRow(state.core);
+    },
+    removeColumn: state => {
+      if (state.core.columns === 1) {
+        return;
+      }
+      removeLastCoreColumn(state.core);
+    }
   }
 });
 
