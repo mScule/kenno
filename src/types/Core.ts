@@ -1,7 +1,7 @@
 import GenericCell from "./CoreCell";
 
 /**
- * Do not modify straight. Use core functions instead.
+ * Do not modify directly. Use core functions instead.
  */
 type Core = {
   rows: number;

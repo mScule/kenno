@@ -9,6 +9,7 @@ type Cell = {
   selected?: boolean;
   disabled?: boolean;
   reference?: string;
+  onClick?: () => {}
 };
 
 export default Cell;

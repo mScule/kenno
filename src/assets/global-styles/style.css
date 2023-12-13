@@ -17,15 +17,15 @@ body {
 #app {
   width: 100vw;
   height: 100vh;
-
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-/* Input */
-input[type], select, textarea {
+/* Inputs */
+
+input[type] {
   background-color: var(--color-background-secondary);
   color: var(--color-font);
   padding: 0.5rem;
@@ -36,9 +36,17 @@ input[type], select, textarea {
 }
 
 textarea {
+  background-color: var(--color-background-secondary);
+  color: var(--color-font);
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+  font-family: var(--font-main-mono);
+  font-variant-ligatures: normal;
   resize: none;
   height: 100%;
   overflow: scroll;
+  border-radius: 4px;
 }
 
 /* Scrollbar */
@@ -63,6 +71,8 @@ textarea {
   border: solid 1px var(--color-border);
   background: var(--color-background-secondary);
 }
+
+/* Every element is a border-box */
 
 * {
   box-sizing: border-box;
