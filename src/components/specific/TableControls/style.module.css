@@ -11,9 +11,9 @@
 
 .controls {
   display: flex;
-  width: fit-content;
+  width: 100%;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-between;
   padding: 0.5rem 1rem 0.5rem 1rem;
   gap: 1rem;
   align-items: center;

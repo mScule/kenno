@@ -34,6 +34,11 @@
   background: var(--color-red);
 }
 
+.button:disabled {
+  background: transparent;
+  color: var(--color-fill);
+}
+
 @media (prefers-color-scheme: dark) {
   .green:hover,
   .yellow:hover,

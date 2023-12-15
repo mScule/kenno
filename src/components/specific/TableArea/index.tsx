@@ -13,6 +13,7 @@ import Table from "../../resuable/Table/index.tsx";
 import Stack from "../../resuable/Stack/index.tsx";
 import Button from "../../resuable/Button/index.tsx";
 
+import useAppDispatch from "../../../hooks/useAppDispatch.ts";
 import useAppSelector from "../../../hooks/useAppSelector.ts";
 
 import range from "../../../utility/array/range.ts";
@@ -21,7 +22,6 @@ import {
   TbCirclePlus as AddIcon,
   TbCircleX as RemoveIcon
 } from "react-icons/tb";
-import { useDispatch } from "react-redux";
 import {
   addRow,
   addColumn,
@@ -30,8 +30,9 @@ import {
 } from "../../../features/spreadsheet/index.ts";
 
 export default function TableArea() {
-  const dispatch = useDispatch();
-  const core = useAppSelector(state => state.spreadsheet.core);
+  const dispatch = useAppDispatch();
+  const core = useAppSelector(state => state.spreadsheet.present.core);
+  const edit = useAppSelector(state => state.controls.edit);
 
   return (
     <div className={style.wrapper}>
@@ -46,7 +47,9 @@ export default function TableArea() {
               alignItems: "center",
               gap: "0.5rem"
             }}>
-            <Button onClick={() => dispatch(removeRow())}>
+            <Button
+              disabled={!edit || core.rows === 1}
+              onClick={() => dispatch(removeRow())}>
               <RemoveIcon size={16} />
             </Button>
             <Stack
@@ -58,7 +61,9 @@ export default function TableArea() {
                 alignItems: "center",
                 gap: "0.5rem"
               }}>
-              <Button onClick={() => dispatch(removeColumn())}>
+              <Button
+                disabled={!edit || core.columns === 1}
+                onClick={() => dispatch(removeColumn())}>
                 <RemoveIcon size={16} />
               </Button>
               <div className={style.draggable}>
@@ -116,11 +121,11 @@ export default function TableArea() {
                   }))}
                 />
               </div>
-              <Button onClick={() => dispatch(addColumn())}>
+              <Button disabled={!edit} onClick={() => dispatch(addColumn())}>
                 <AddIcon size={16} />
               </Button>
             </Stack>
-            <Button onClick={() => dispatch(addRow())}>
+            <Button disabled={!edit} onClick={() => dispatch(addRow())}>
               <AddIcon size={16} />
             </Button>
           </Stack>

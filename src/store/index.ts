@@ -1,4 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import undoable from "redux-undo";
+
+import controlsReducer from "../features/controls";
 import spreadsheetReducer from "../features/spreadsheet";
 
 /**
@@ -7,7 +10,8 @@ import spreadsheetReducer from "../features/spreadsheet";
  */
 export const store = configureStore({
   reducer: {
-    spreadsheet: spreadsheetReducer
+    controls: controlsReducer,
+    spreadsheet: undoable(spreadsheetReducer)
   }
 });
 

@@ -11,7 +11,7 @@ import {
 export const slice = createSlice({
   name: "spreadsheet",
   initialState: {
-    core: createCore(1, 1)
+    core: createCore(1, 1),
   },
   reducers: {
     addRow: state => addCoreRow(state.core),

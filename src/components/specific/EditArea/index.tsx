@@ -18,10 +18,15 @@ import Stack from "../../resuable/Stack";
 import CellType from "../../../types/CellType";
 import Direction from "../../../types/Direction";
 
+import useAppSelector from "../../../hooks/useAppSelector";
+
 export default function EditArea() {
   const [example, setExample] = useState<CellType | null>(CellType.Boolean);
   const [type] = useState<"cell" | "column" | "row">("row");
-  return (
+
+  const edit = useAppSelector(state => state.controls.edit);
+
+  return edit && (
     <div className={style.wrapper}>
       <Card>
         <div className={style.panel}>

@@ -1,4 +1,3 @@
-import BottomBar from "../BottomBar";
 import EditArea from "../EditArea";
 import TableArea from "../TableArea";
 import TableControls from "../TableControls";
@@ -10,7 +9,7 @@ import Direction from "../../../types/Direction.ts";
 
 export default function App() {
   return (
-    <Stack direction={Direction.Column}>
+    <Stack direction={Direction.Column} style={{ paddingBottom: "0.5rem" }}>
       <TopBar />
       <TableControls />
 
@@ -18,7 +17,6 @@ export default function App() {
         <TableArea />
         <EditArea />
       </Stack>
-      <BottomBar />
     </Stack>
   );
 }
