@@ -16,6 +16,8 @@ import Button from "../../resuable/Button/index.tsx";
 import useAppDispatch from "../../../hooks/useAppDispatch.ts";
 import useAppSelector from "../../../hooks/useAppSelector.ts";
 
+import { setSelection } from "../../../features/controls/index.ts";
+
 import range from "../../../utility/array/range.ts";
 
 import {
@@ -32,7 +34,25 @@ import {
 export default function TableArea() {
   const dispatch = useAppDispatch();
   const core = useAppSelector(state => state.spreadsheet.present.core);
-  const edit = useAppSelector(state => state.controls.edit);
+  const { edit, selection } = useAppSelector(state => state.controls);
+
+  function isSelected(rowIndex: number, columnIndex: number) {
+    if (!selection) {
+      return false;
+    }
+
+    const { row, column } = selection;
+
+    return rowIndex === row && columnIndex === column;
+  }
+
+  function select(row: number, column: number) {
+    if (selection && selection.row === row && selection.column === column) {
+      dispatch(setSelection(null));
+    }
+
+    dispatch(setSelection({ row, column }));
+  }
 
   return (
     <div className={style.wrapper}>
@@ -83,12 +103,17 @@ export default function TableArea() {
                     }
                   ]}
                   // @ts-ignore
-                  body={core.data.map((row, index) => ({
+                  body={core.data.map((row, rowIndex) => ({
                     columns: [
-                      { heading: true, value: index + "" },
-                      ...row.map(column => {
+                      { heading: true, value: rowIndex + "" },
+                      ...row.map((column, columnIndex) => {
                         if (!column) {
-                          return {};
+                          return {
+                            onClick: () => {
+                              select(rowIndex, columnIndex)
+                            },
+                            selected: isSelected(rowIndex, columnIndex)
+                          };
                         }
 
                         switch (column.type) {
@@ -102,6 +127,8 @@ export default function TableArea() {
                               column.value as string
                             );
                             return {
+                              onClick: () => select(rowIndex, columnIndex),
+                              selected: isSelected(rowIndex, columnIndex),
                               type: CellType.Expression,
                               value: result.value,
                               color:
@@ -112,6 +139,8 @@ export default function TableArea() {
 
                           default:
                             return {
+                              onClick: () => select(rowIndex, columnIndex),
+                              selected: isSelected(rowIndex, columnIndex),
                               type: column.type,
                               value: column.value + ""
                             };

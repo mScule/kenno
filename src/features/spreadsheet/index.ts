@@ -1,17 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import {
   createCore,
   addColumn as addCoreColumn,
   addRow as addCoreRow,
   removeLastColumn as removeLastCoreColumn,
-  removeLastRow as removeLastCoreRow
+  removeLastRow as removeLastCoreRow,
+  setCell as setCoreCell
 } from "../../engine/core";
+import CoreCell from "../../types/CoreCell";
+import Pointer from "../../types/Pointer";
 
 export const slice = createSlice({
   name: "spreadsheet",
   initialState: {
-    core: createCore(1, 1),
+    core: createCore(1, 1)
   },
   reducers: {
     addRow: state => addCoreRow(state.core),
@@ -27,9 +30,15 @@ export const slice = createSlice({
         return;
       }
       removeLastCoreColumn(state.core);
+    },
+    setCell: (
+      state,
+      { payload }: PayloadAction<{ pointer: Pointer; cell: CoreCell<unknown> }>
+    ) => {
+      setCoreCell(state.core, payload.pointer, payload.cell);
     }
   }
 });
 
-export const { addRow, addColumn, removeRow, removeColumn } = slice.actions;
+export const { addRow, addColumn, removeRow, removeColumn, setCell } = slice.actions;
 export default slice.reducer;
