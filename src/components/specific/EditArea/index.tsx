@@ -47,6 +47,7 @@ export default function EditArea() {
       <div className={style.wrapper}>
         <Card>
           <div className={style.panel}>
+            selected && (
             <Stack
               direction={Direction.Column}
               style={{ justifyContent: "space-between", gap: "1rem" }}>
@@ -102,6 +103,7 @@ export default function EditArea() {
                 </Button>
               </Stack>
             </Stack>
+            )
           </div>
         </Card>
       </div>

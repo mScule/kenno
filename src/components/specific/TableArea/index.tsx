@@ -33,6 +33,7 @@ import {
 
 export default function TableArea() {
   const dispatch = useAppDispatch();
+
   const core = useAppSelector(state => state.spreadsheet.present.core);
   const { edit, selection } = useAppSelector(state => state.controls);
 
@@ -46,9 +47,14 @@ export default function TableArea() {
     return rowIndex === row && columnIndex === column;
   }
 
+  function unselect() {
+    dispatch(setSelection(null));
+  }
+
   function select(row: number, column: number) {
-    if (selection && selection.row === row && selection.column === column) {
-      dispatch(setSelection(null));
+    if (isSelected(row, column)) {
+      unselect();
+      return;
     }
 
     dispatch(setSelection({ row, column }));
