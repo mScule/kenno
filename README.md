@@ -1,5 +1,7 @@
 # Kenno - Spreadsheet thingy
 
+![Screenshot](./doc/img/screenshot.png)
+
 ## Commands
 
 | Command    | Description      |
