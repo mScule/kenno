@@ -33,6 +33,16 @@ export default function TableControls() {
     dispatch(setEdit(!edit));
   }
 
+  function handleUndo() {
+    dispatch(setSelection(null));
+    undo();
+  }
+
+  function handleRedo() {
+    dispatch(setSelection(null));
+    redo();
+  }
+
   return (
     <div className={style.wrapper}>
       <div className={style.controls}>
@@ -45,10 +55,10 @@ export default function TableControls() {
 
         <div>
           <Stack direction={Direction.Row}>
-            <Button disabled={isUndoDisabled} onClick={undo}>
+            <Button disabled={isUndoDisabled} onClick={handleUndo}>
               <UndoIcon size={20} />
             </Button>
-            <Button disabled={isRedoDisabled} onClick={redo}>
+            <Button disabled={isRedoDisabled} onClick={handleRedo}>
               <RedoIcon size={20} />
             </Button>
           </Stack>
