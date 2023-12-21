@@ -139,7 +139,7 @@ export default function TableArea() {
     return [
       {
         columns: [
-          { heading: true },
+          { heading: true, disabled: true },
           ...range(core.columns).map(index => visualizeColumnHeading(index))
         ]
       }
