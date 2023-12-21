@@ -102,7 +102,7 @@ export function setCell(
   cell: CoreCell<unknown>
 ) {
   requireRow(core, row);
-  requireColumn(core, row);
+  requireColumn(core, column);
 
   core.data[row][column] = cell;
 }

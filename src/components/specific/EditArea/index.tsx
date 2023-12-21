@@ -43,11 +43,10 @@ export default function EditArea() {
   }, [selection, core]);
 
   return (
-    edit && (
+    edit && selection && (
       <div className={style.wrapper}>
         <Card>
           <div className={style.panel}>
-            selected && (
             <Stack
               direction={Direction.Column}
               style={{ justifyContent: "space-between", gap: "1rem" }}>
@@ -58,7 +57,7 @@ export default function EditArea() {
                   alignItems: "center",
                   gap: "0.5rem"
                 }}>
-                <CellIcon /> Cell
+                <CellIcon /> Cell {`$(${selection.row}:${selection.column})`}
               </h3>
 
               <Select
@@ -98,12 +97,10 @@ export default function EditArea() {
                       })
                     );
                   }}>
-                  Assign
                   <ExecuteIcon size={20} />
                 </Button>
               </Stack>
             </Stack>
-            )
           </div>
         </Card>
       </div>

@@ -40,6 +40,19 @@ test("set cell that's already set", () => {
   expect(getCell<NumberCell>(core, cell)!.value).toEqual(10);
 });
 
+test("set cell thats the only column", () => {
+  const core = createCore(2, 1);
+  const cell: Pointer = { row: 1, column: 0 };
+
+  expect(isEmptyCell(getCell(core, cell))).toBeTruthy();
+
+  setCell(core, cell, createStringCell("Hello there"));
+  expect(getCell<StringCell>(core, cell)!.value).toEqual("Hello there");
+
+  setCell(core, cell, createNumberCell(10));
+  expect(getCell<NumberCell>(core, cell)!.value).toEqual(10);
+});
+
 test("try set value that's outside the core", () => {
   const core = createCore(0, 0);
 

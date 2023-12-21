@@ -8,6 +8,10 @@ import Color from "../../../types/Color.ts";
 import CellType from "../../../types/CellType.ts";
 import ShellResultType from "../../../types/ShellResultType.ts";
 import Direction from "../../../types/Direction.ts";
+import CoreRow from "../../../types/CoreRow.ts";
+import CoreCell from "../../../types/CoreCell.ts";
+import Pointer from "../../../types/Pointer.ts";
+import Row from "../../../types/Row.ts";
 
 import Table from "../../resuable/Table/index.tsx";
 import Stack from "../../resuable/Stack/index.tsx";
@@ -35,29 +39,120 @@ export default function TableArea() {
   const dispatch = useAppDispatch();
 
   const core = useAppSelector(state => state.spreadsheet.present.core);
-  const { edit, selection } = useAppSelector(state => state.controls);
+  const edit = useAppSelector(state => state.controls.edit);
+  const selection = useAppSelector(state => state.controls.selection);
 
-  function isSelected(rowIndex: number, columnIndex: number) {
+  function isCellSelected(rowIndex: number, columnIndex: number) {
     if (!selection) {
       return false;
     }
 
-    const { row, column } = selection;
-
-    return rowIndex === row && columnIndex === column;
+    return rowIndex === selection.row && columnIndex === selection.column;
   }
 
-  function unselect() {
-    dispatch(setSelection(null));
-  }
+  function selectCell(row: number, column: number) {
+    if (!edit) {
+      return;
+    }
 
-  function select(row: number, column: number) {
-    if (isSelected(row, column)) {
-      unselect();
+    if (isCellSelected(row, column)) {
+      dispatch(setSelection(null));
       return;
     }
 
     dispatch(setSelection({ row, column }));
+  }
+
+  function removeCellRow() {
+    dispatch(setSelection(null));
+    dispatch(removeRow());
+  }
+
+  function removeCellColumn() {
+    dispatch(setSelection(null));
+    dispatch(removeColumn());
+  }
+
+  function addCellRow() {
+    dispatch(setSelection(null));
+    dispatch(addRow());
+  }
+
+  function addCellColumn() {
+    dispatch(setSelection(null));
+    dispatch(addColumn());
+  }
+
+  function visualizeRowHeading(index: number) {
+    return { heading: true, value: String(index), disabled: true };
+  }
+
+  function visualizeColumnHeading(index: number) {
+    return { heading: true, value: String(index), disabled: true };
+  }
+
+  function visualizeCoreCell(
+    cell: CoreCell<unknown>,
+    { row, column }: Pointer
+  ) {
+    const visualized: Cell = {
+      onClick: () => selectCell(row, column),
+      selected: isCellSelected(row, column),
+      disabled: !edit
+    };
+
+    if (!cell) {
+      return visualized;
+    }
+
+    visualized.type = cell.type;
+
+    if (cell.type === CellType.Expression) {
+      const result = shell(
+        {
+          core,
+          variables: {},
+          functions
+        },
+        String(cell.value)
+      );
+
+      if (result.type === ShellResultType.Failure) {
+        visualized.color = Color.Red;
+      }
+
+      visualized.value = result.value;
+    } else {
+      visualized.value = String(cell.value);
+    }
+
+    return visualized;
+  }
+
+  function visualizeCoreRow(row: CoreRow, rowIndex: number) {
+    return row.map((cell, columnIndex) =>
+      visualizeCoreCell(cell, { row: rowIndex, column: columnIndex })
+    );
+  }
+
+  function visualizeHead(): Row[] {
+    return [
+      {
+        columns: [
+          { heading: true },
+          ...range(core.columns).map(index => visualizeColumnHeading(index))
+        ]
+      }
+    ];
+  }
+
+  function visualizeBody(): Row[] {
+    return core.data.map((row, rowIndex) => ({
+      columns: [
+        visualizeRowHeading(rowIndex),
+        ...visualizeCoreRow(row, rowIndex)
+      ]
+    }));
   }
 
   return (
@@ -73,9 +168,7 @@ export default function TableArea() {
               alignItems: "center",
               gap: "0.5rem"
             }}>
-            <Button
-              disabled={!edit || core.rows === 1}
-              onClick={() => dispatch(removeRow())}>
+            <Button disabled={!edit || core.rows === 1} onClick={removeCellRow}>
               <RemoveIcon size={16} />
             </Button>
             <Stack
@@ -89,78 +182,17 @@ export default function TableArea() {
               }}>
               <Button
                 disabled={!edit || core.columns === 1}
-                onClick={() => dispatch(removeColumn())}>
+                onClick={removeCellColumn}>
                 <RemoveIcon size={16} />
               </Button>
               <div className={style.draggable}>
-                <Table
-                  head={[
-                    {
-                      columns: [
-                        { heading: true },
-                        ...range(core.columns).map(
-                          index =>
-                            ({
-                              heading: true,
-                              value: index + ""
-                            } as Cell)
-                        )
-                      ]
-                    }
-                  ]}
-                  // @ts-ignore
-                  body={core.data.map((row, rowIndex) => ({
-                    columns: [
-                      { heading: true, value: rowIndex + "" },
-                      ...row.map((column, columnIndex) => {
-                        if (!column) {
-                          return {
-                            onClick: () => {
-                              select(rowIndex, columnIndex)
-                            },
-                            selected: isSelected(rowIndex, columnIndex)
-                          };
-                        }
-
-                        switch (column.type) {
-                          case CellType.Expression:
-                            const result = shell(
-                              {
-                                core,
-                                variables: {},
-                                functions
-                              },
-                              column.value as string
-                            );
-                            return {
-                              onClick: () => select(rowIndex, columnIndex),
-                              selected: isSelected(rowIndex, columnIndex),
-                              type: CellType.Expression,
-                              value: result.value,
-                              color:
-                                result.type === ShellResultType.Failure
-                                  ? Color.Red
-                                  : null
-                            };
-
-                          default:
-                            return {
-                              onClick: () => select(rowIndex, columnIndex),
-                              selected: isSelected(rowIndex, columnIndex),
-                              type: column.type,
-                              value: column.value + ""
-                            };
-                        }
-                      })
-                    ]
-                  }))}
-                />
+                <Table head={visualizeHead()} body={visualizeBody()} />
               </div>
-              <Button disabled={!edit} onClick={() => dispatch(addColumn())}>
+              <Button disabled={!edit} onClick={addCellColumn}>
                 <AddIcon size={16} />
               </Button>
             </Stack>
-            <Button disabled={!edit} onClick={() => dispatch(addRow())}>
+            <Button disabled={!edit} onClick={addCellRow}>
               <AddIcon size={16} />
             </Button>
           </Stack>

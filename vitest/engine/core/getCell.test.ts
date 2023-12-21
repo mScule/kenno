@@ -17,6 +17,20 @@ test("get cell that's empty", () => {
   expect(isEmptyCell(getCell(core, { row: 0, column: 0 }))).toEqual(true);
 });
 
+test("get cell that's empty", () => {
+  const core = createCore(10, 10);
+
+  expect(isEmptyCell(getCell(core, { row: 9, column: 9 }))).toEqual(true);
+  expect(isEmptyCell(getCell(core, { row: 0, column: 9 }))).toEqual(true);
+  expect(isEmptyCell(getCell(core, { row: 9, column: 0 }))).toEqual(true);
+  expect(isEmptyCell(getCell(core, { row: 0, column: 0 }))).toEqual(true);
+});
+
+test("get cell that's empty when theres only one column", () => {
+  const core = createCore(2, 1);
+  expect(isEmptyCell(getCell(core, { row: 1, column: 0 }))).toEqual(true);
+});
+
 test("get cell that's a number", () => {
   const core = createCore(10, 10);
 

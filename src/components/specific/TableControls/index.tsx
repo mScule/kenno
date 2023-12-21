@@ -16,6 +16,7 @@ import useUndo from "../../../hooks/useUndo";
 import useRedo from "../../../hooks/useRedo";
 
 import { setEdit } from "../../../features/controls";
+import { setSelection } from "../../../features/controls";
 
 import Stack from "../../resuable/Stack";
 import Direction from "../../../types/Direction";
@@ -27,6 +28,11 @@ export default function TableControls() {
   const { redo, disabled: isRedoDisabled } = useRedo();
   const { edit } = useAppSelector(state => state.controls);
 
+  function handleChange() {
+    dispatch(setSelection(null));
+    dispatch(setEdit(!edit));
+  }
+
   return (
     <div className={style.wrapper}>
       <div className={style.controls}>
@@ -34,7 +40,7 @@ export default function TableControls() {
           left={<PreviewIcon size={16} />}
           right={<EditIcon size={16} />}
           selection={edit}
-          onSelect={() => dispatch(setEdit(!edit))}
+          onChange={handleChange}
         />
 
         <div>

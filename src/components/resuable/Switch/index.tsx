@@ -7,12 +7,12 @@ type Props = {
   left: ReactNode;
   right: ReactNode;
   selection: boolean;
-  onSelect: () => {};
+  onChange: (() => void) | (() => {});
 };
 
-export default function Switch({ left, right, selection, onSelect }: Props) {
+export default function Switch({ left, right, selection, onChange }: Props) {
   return (
-    <button className={style.switch} onClick={onSelect}>
+    <button className={style.switch} onClick={onChange}>
       <div
         className={clsx(
           style.option,
