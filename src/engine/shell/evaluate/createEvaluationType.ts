@@ -1,7 +1,7 @@
 import EvaluationResult from "../../../types/EvaluationResult";
 import EvaluationResultType from "../../../types/EvaluationResultType";
 
-export default function evaluateType(value: unknown): EvaluationResult {
+export default function createEvaluationResult(value: unknown): EvaluationResult {
   switch (typeof value) {
     case "boolean":
       return { type: EvaluationResultType.Boolean, value };
