@@ -1,25 +1,29 @@
 import ShellFunction from "../../../types/ShellFunction";
 
 export default {
-  LOG: (_, [...parameters]) => console.log("Kenno:", ...parameters),
   STR: (_, [value]) => String(value),
   NUM: (_, [value]) => Number(value),
-  SUM: (_, values) => {
-    let sum = 0;
 
-    const add = (value: unknown) => {
-      if(Array.isArray(value)) {
-        for (const v of value) {
-          add(v)
-        }
-      } else {
-        sum += Number(value);
-      }
+  SUM: (_, values) => {
+    let result = 0;
+
+    for (const value of values) {
+      result += Number(value);
     }
 
-    add(values);
-
-    return sum;
+    return result;
   },
-  AVG: (_, []) => {}
+  AVG: (_, values) => {
+    console.log(values);
+    let result = 0;
+
+    for (const value of values) {
+      result += Number(value);
+    }
+
+    return result / values.length;
+  },
+  MIN: (_, values) => Math.min(...(values as number[])),
+  MAX: (_, values) => Math.max(...(values as number[])),
+  COUNT: (_, values) => values.length
 } as Record<string, ShellFunction<unknown>>;
