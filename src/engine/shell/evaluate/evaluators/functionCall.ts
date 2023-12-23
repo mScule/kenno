@@ -6,10 +6,10 @@ import evaluateType from "../createEvaluationType";
 import getChildren from "../getChildren";
 import getTokenValue from "../getTokenValue";
 
-import { createError } from "../../../../utility/error";
-
 import evaluate from "..";
 import extractValue from "../extractValue";
+
+import { createError } from "../../../../utility/error";
 
 export default function functionCall(
   state: ShellState,
