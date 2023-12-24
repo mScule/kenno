@@ -1,4 +1,4 @@
-# Kenno - Spreadsheet thingy
+# Kenno - A spreadsheet thingy
 
 ![Screenshot](./doc/img/screenshot.png)
 
