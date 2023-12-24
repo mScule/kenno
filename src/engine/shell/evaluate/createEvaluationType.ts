@@ -10,6 +10,9 @@ export default function createEvaluationResult(value: unknown): EvaluationResult
     case "string":
       return { type: EvaluationResultType.String, value };
     default:
+      if (Array.isArray(value)) {
+        return { type: EvaluationResultType.Array, value };
+      }
       return { type: EvaluationResultType.Null, value: "null" };
   }
 }

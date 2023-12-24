@@ -5,6 +5,7 @@ export default {
   NUM: (_, [value]) => Number(value),
 
   SUM: (_, values) => {
+    console.log(values)
     let result = 0;
 
     for (const value of values) {

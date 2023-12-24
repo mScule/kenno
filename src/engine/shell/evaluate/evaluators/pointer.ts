@@ -40,8 +40,8 @@ export default function pointer(
     demandType(column, EvaluationResultType.Number);
 
     const cell = getCell(state.core, {
-      row: rowSelection.value as number,
-      column: columnSelection.value as number
+      row: row.value as number,
+      column: column.value as number
     })!;
 
     switch (true) {
@@ -72,13 +72,14 @@ export default function pointer(
     return createEvaluationResult(value);
   } else if (multipleRowsSelected) {
     const value: EvaluationResult[] = [];
-
+  
     for (const row of rowSelection.value as EvaluationResult[]) {
       value.push(getPointedCell(row, columnSelection));
     }
 
     return createEvaluationResult(value);
   } else if (multipleColumnsSelected) {
+    
     const value: EvaluationResult[] = [];
 
     for (const column of columnSelection.value as EvaluationResult[]) {
