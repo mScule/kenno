@@ -20,6 +20,8 @@ import useAppSelector from "../../../hooks/useAppSelector";
 import { getCell } from "../../../engine/core";
 import { setCell } from "../../../features/spreadsheet";
 import Pointer from "../../../types/Pointer";
+import Copyable from "../../resuable/Copyable";
+import Code from "../../resuable/Code";
 
 export default function EditArea() {
   const dispatch = useAppDispatch();
@@ -43,22 +45,27 @@ export default function EditArea() {
   }, [selection, core]);
 
   return (
-    edit && selection && (
+    edit &&
+    selection && (
       <div className={style.wrapper}>
         <Card>
           <div className={style.panel}>
             <Stack
               direction={Direction.Column}
               style={{ justifyContent: "space-between", gap: "1rem" }}>
-              <h3
+              <header
                 style={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  gap: "0.5rem"
+                  gap: "1rem"
                 }}>
-                <CellIcon /> Cell {`$(${selection.row}:${selection.column})`}
-              </h3>
+                <CellIcon />
+                <h3 style={{padding: 0}}>Cell</h3>
+                <Copyable value={`$(${selection.row}:${selection.column})`}>
+                  <Code>{`$(${selection.row}:${selection.column})`}</Code>
+                </Copyable>
+              </header>
 
               <Select
                 options={[
