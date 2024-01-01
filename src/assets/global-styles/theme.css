@@ -8,6 +8,11 @@
 
   --color-font: var(--color-black);
   --color-font-secondary: var(--color-black);
+
+  --color-information: var(--color-blue);
+  --color-success: var(--color-green);
+  --color-warning: var(--color-orange);
+  --color-error: var(--color-red);
 }
 
 @media (prefers-color-scheme: dark) {

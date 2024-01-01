@@ -1,0 +1,96 @@
+.wrapper {
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.notification {
+  background-color: var(--color-background);
+  border-radius: 4px;
+  max-width: 20rem;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+
+  z-index: 50;
+  top: 1rem;
+  padding: 0.5rem;
+  border: solid 1px var(--color-border);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+
+  top: 1rem;
+
+  gap: 0.25rem;
+}
+
+.severityBadge {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  gap: 1rem;
+}
+
+.timer {
+  width: 0%;
+  border-radius: 4px;
+  height: 0.25rem;
+  animation-timing-function: linear;
+}
+
+@keyframes countDown {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+.severityBadge.information {
+  color: var(--color-information);
+}
+
+.severityBadge.success {
+  color: var(--color-success);
+}
+
+.severityBadge.warning {
+  color: var(--color-warning);
+}
+
+.severityBadge.error {
+  color: var(--color-error);
+}
+
+.timer.information {
+  background-color: var(--color-information);
+}
+
+.timer.success {
+  background-color: var(--color-success);
+}
+
+.timer.warning {
+  background-color: var(--color-warning);
+}
+
+.timer.error {
+  background-color: var(--color-error);
+}
