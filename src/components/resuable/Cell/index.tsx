@@ -9,11 +9,11 @@ import {
   TbVariable as ExpressonTypeIcon
 } from "react-icons/tb";
 
-import Cell from "../../../types/Cell";
+import CellType from "../../../types/Cell";
 import Color from "../../../types/Color";
 import DataType from "../../../types/CellType";
 
-type Props = Cell;
+type Props = CellType;
 
 function getColor(color?: Color) {
   switch (color) {
@@ -33,13 +33,13 @@ function getColor(color?: Color) {
 function getTypeIcon(type: DataType) {
   switch (type) {
     case DataType.Boolean:
-      return <BooleanTypeIcon alt="Boolean" title="Boolean" />;
+      return <BooleanTypeIcon title="Boolean" />;
     case DataType.Number:
-      return <NumberTypeIcon alt="Number" title="Number" />;
+      return <NumberTypeIcon title="Number" />;
     case DataType.String:
-      return <StringTypeIcon alt="String" title="String" />;
+      return <StringTypeIcon title="String" />;
     case DataType.Expression:
-      return <ExpressonTypeIcon alt="Expression" title="Expression" />;
+      return <ExpressonTypeIcon title="Expression" />;
   }
 }
 
