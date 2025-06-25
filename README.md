@@ -4,6 +4,6 @@
 
 ## Commands
 
-| Command    | Description      |
-| ---------- | ---------------- |
-| `pnpm dev` | Start dev server |
+| Command       | Description      |
+| ------------- | ---------------- |
+| `npm run dev` | Start dev server |

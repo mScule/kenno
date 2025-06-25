@@ -7,6 +7,7 @@ import useAppSelector from "../../../hooks/useAppSelector";
 
 import getUsedSpace from "../../../utility/url-store/getUsedSpace";
 import { MAX_SPACE } from "../../../utility/url-store/constants";
+import clsx from "clsx";
 
 export default function SpaceCounter() {
   const spreadsheet = useAppSelector(state => state.spreadsheet);
@@ -18,9 +19,9 @@ export default function SpaceCounter() {
 
   return (
     <div className={style.wrapper}>
-      <span className={style.value}>{usedSpace}</span>
-      <span>/</span>
-      <span className={style.value}>{MAX_SPACE}</span>
+      <span className={clsx(style.font, style.value)}>{usedSpace}</span>
+      <span className={style.font}>/</span>
+      <span className={clsx(style.font, style.value)}>{MAX_SPACE}</span>
       <SpaceIcon size={16} />
     </div>
   );

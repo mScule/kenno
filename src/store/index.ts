@@ -6,6 +6,8 @@ import withURLPersistedState from "./enhancers/withUrlPersistedState";
 import controlsReducer from "../features/controls";
 import spreadsheetReducer from "../features/spreadsheet";
 
+const KEY = "s";
+
 /**
  * Do not access directly.
  * Use useAppDispatch, and useAppSelector hooks instead.
@@ -13,7 +15,7 @@ import spreadsheetReducer from "../features/spreadsheet";
 export const store = configureStore({
   reducer: {
     controls: controlsReducer,
-    spreadsheet: withUndoable(withURLPersistedState("s", spreadsheetReducer))
+    spreadsheet: withUndoable(withURLPersistedState(KEY, spreadsheetReducer))
   }
 });
 
