@@ -1,3 +1,4 @@
+import SpaceCounter from "../SpaceCounter";
 import style from "./style.module.css";
 
 import { TbGridPattern as Icon } from "react-icons/tb";
@@ -10,7 +11,9 @@ export default function TopBar() {
         <Icon size={16} />
       </div>
 
-      <div className={style.options}></div>
+      <div className={style.options}>
+        <SpaceCounter />
+      </div>
     </nav>
   );
 }

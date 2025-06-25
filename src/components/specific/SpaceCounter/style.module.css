@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  gap: 0.25rem;
+}
+
+.value {
+  font-weight: bold;
+}
