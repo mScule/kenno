@@ -1,7 +1,9 @@
-import SpaceCounter from "../SpaceCounter";
-import style from "./style.module.css";
-
 import { TbGridPattern as Icon } from "react-icons/tb";
+
+import ResetButton from "../ResetButton";
+import SpaceCounter from "../SpaceCounter";
+
+import style from "./style.module.css";
 
 export default function TopBar() {
   return (
@@ -12,6 +14,7 @@ export default function TopBar() {
       </div>
 
       <div className={style.options}>
+        <ResetButton />
         <SpaceCounter />
       </div>
     </nav>

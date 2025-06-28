@@ -17,6 +17,7 @@ export const slice = createSlice({
     core: createCore(1, 1)
   },
   reducers: {
+    reset: () => ({ core: createCore(1, 1) }),
     addRow: state => addCoreRow(state.core),
     addColumn: state => addCoreColumn(state.core),
     removeRow: state => {
@@ -40,5 +41,6 @@ export const slice = createSlice({
   }
 });
 
-export const { addRow, addColumn, removeRow, removeColumn, setCell } = slice.actions;
+export const { reset, addRow, addColumn, removeRow, removeColumn, setCell } =
+  slice.actions;
 export default slice.reducer;

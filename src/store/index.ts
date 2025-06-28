@@ -4,6 +4,7 @@ import withUndoable from "redux-undo";
 import withURLPersistedState from "./enhancers/withUrlPersistedState";
 
 import controlsReducer from "../features/controls";
+import editReducer from "../features/edit";
 import spreadsheetReducer from "../features/spreadsheet";
 
 const KEY = "s";
@@ -15,6 +16,7 @@ const KEY = "s";
 export const store = configureStore({
   reducer: {
     controls: controlsReducer,
+    edit: editReducer,
     spreadsheet: withUndoable(withURLPersistedState(KEY, spreadsheetReducer))
   }
 });

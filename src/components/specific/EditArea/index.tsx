@@ -16,23 +16,22 @@ import CellType from "../../../types/CellType";
 import Direction from "../../../types/Direction";
 import Pointer from "../../../types/Pointer";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useAppDispatch from "../../../hooks/useAppDispatch";
 import useAppSelector from "../../../hooks/useAppSelector";
 
 import { getCell } from "../../../engine/core";
 import { setCell } from "../../../features/spreadsheet";
+import { setType, setValue } from "../../../features/edit";
 
 export default function EditArea() {
   const dispatch = useAppDispatch();
 
-  const edit = useAppSelector(state => state.controls.edit);
+  const isEdit = useAppSelector(state => state.controls.edit);
   const selection = useAppSelector(state => state.controls.selection);
+  const edit = useAppSelector(state => state.edit);
   const core = useAppSelector(state => state.spreadsheet.present.core);
-
-  const [type, setType] = useState<CellType | null>(null);
-  const [value, setValue] = useState<string | null>(null);
 
   useEffect(() => {
     if (!selection) {
@@ -41,12 +40,16 @@ export default function EditArea() {
 
     const cell = getCell(core, selection);
 
-    setType(cell && cell.type ? cell.type : null);
-    setValue(cell && cell.value ? String(cell.value) : "");
+    if (cell === null) {
+      return;
+    }
+
+    dispatch(setType(cell && cell.type ? cell.type : null));
+    dispatch(setValue(cell && cell.value ? String(cell.value) : ""));
   }, [selection, core]);
 
   return (
-    edit &&
+    isEdit &&
     selection && (
       <div className={style.wrapper}>
         <Card>
@@ -62,7 +65,7 @@ export default function EditArea() {
                   gap: "1rem"
                 }}>
                 <CellIcon />
-                <h3 style={{padding: 0}}>Cell</h3>
+                <h3 style={{ padding: 0 }}>Cell</h3>
                 <Copyable value={`$(${selection.row}:${selection.column})`}>
                   <Code>{`$(${selection.row}:${selection.column})`}</Code>
                 </Copyable>
@@ -76,15 +79,15 @@ export default function EditArea() {
                   { name: "String", value: CellType.String },
                   { name: "Expression", value: CellType.Expression }
                 ]}
-                selected={type}
-                onSelect={type => setType(type)}
+                selected={edit.type}
+                onSelect={type => dispatch(setType(type))}
               />
               <textarea
                 name="input"
                 placeholder="f(x)"
                 spellCheck={false}
-                value={value ? String(value) : ""}
-                onChange={e => setValue(e.target.value)}
+                value={String(edit.value ?? "")}
+                onChange={e => dispatch(setValue(e.target.value))}
               />
 
               <Stack
@@ -99,8 +102,8 @@ export default function EditArea() {
                       setCell({
                         pointer: selection as Pointer,
                         cell: {
-                          type: type!,
-                          value
+                          type: edit.type!,
+                          value: edit.value
                         }
                       })
                     );
