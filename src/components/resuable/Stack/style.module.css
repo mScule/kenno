@@ -14,3 +14,12 @@
 .row {
   flex-direction: row;
 }
+
+@media (max-width: 1024px) {
+  .mobileColumn {
+    flex-direction: column;
+  }
+  .mobileRow {
+    flex-direction: row;
+  }
+}

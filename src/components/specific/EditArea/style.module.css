@@ -8,12 +8,12 @@
 }
 
 .panel {
-  width: 25rem;
+  width: 30rem;
   height: 100%;
 }
 
-@media screen and (max-width: 50rem) {
+@media screen and (max-width: 1024px) {
   .panel {
-    width: 10rem;
+    width: 100%;
   }
 }

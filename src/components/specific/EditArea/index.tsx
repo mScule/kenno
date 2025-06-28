@@ -9,19 +9,20 @@ import Button from "../../resuable/Button";
 import Card from "../../resuable/Card";
 import Select from "../../resuable/Select";
 import Stack from "../../resuable/Stack";
+import Copyable from "../../resuable/Copyable";
+import Code from "../../resuable/Code";
 
 import CellType from "../../../types/CellType";
 import Direction from "../../../types/Direction";
+import Pointer from "../../../types/Pointer";
 
 import { useEffect, useState } from "react";
 
 import useAppDispatch from "../../../hooks/useAppDispatch";
 import useAppSelector from "../../../hooks/useAppSelector";
+
 import { getCell } from "../../../engine/core";
 import { setCell } from "../../../features/spreadsheet";
-import Pointer from "../../../types/Pointer";
-import Copyable from "../../resuable/Copyable";
-import Code from "../../resuable/Code";
 
 export default function EditArea() {
   const dispatch = useAppDispatch();

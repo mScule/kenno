@@ -13,7 +13,9 @@ export default function App() {
       <TopBar />
       <TableControls />
 
-      <Stack direction={Direction.Row} style={{ padding: "0 0.5rem 0 0.5rem" }}>
+      <Stack
+        direction={{ desktop: Direction.Row, mobile: Direction.Column }}
+        style={{ padding: "0 0.5rem 0 0.5rem" }}>
         <TableArea />
         <EditArea />
       </Stack>

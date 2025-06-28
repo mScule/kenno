@@ -8,12 +8,15 @@ import parse from "./parse";
 import evaluate from "./evaluate";
 
 import { createError } from "../../utility/error";
+import stringifyResult from "./evaluate/stringifyResult";
 
 export default function shell(state: ShellState, input: string): ShellResult {
   try {
+    const result = evaluate(state, parse(tokenize(read(input))));
+
     return {
       type: ShellResultType.Success,
-      value: String(evaluate(state, parse(tokenize(read(input)))).value)
+      value: stringifyResult(result.value)
     };
   } catch (error) {
     if ((error as Error).message === "Maximum call stack size exceeded") {
