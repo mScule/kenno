@@ -4,12 +4,13 @@ import TableControls from "../TableControls";
 import TopBar from "../TopBar";
 
 import Stack from "../../resuable/Stack";
-
 import Direction from "../../../types/Direction.ts";
 
 export default function App() {
   return (
-    <Stack direction={Direction.Column} style={{ paddingBottom: "0.5rem" }}>
+    <Stack
+      direction={Direction.Column}
+      style={{ paddingBottom: "0.5rem" }}>
       <TopBar />
       <TableControls />
 

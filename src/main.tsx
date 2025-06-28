@@ -14,6 +14,7 @@ import "./assets/global-styles/propotions.css";
 import "./assets/global-styles/theme.css";
 
 import "./assets/global-styles/style.css";
+
 import NotifierProvider from "./contexts/NotifierProvider/index.tsx";
 
 ReactDOM.createRoot(document.getElementById("app")!).render(
